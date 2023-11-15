@@ -6,6 +6,7 @@ TagManager:
   tags:
   - IceFloors
   - Wall
+  - Text
   layers:
   - Default
   - TransparentFX

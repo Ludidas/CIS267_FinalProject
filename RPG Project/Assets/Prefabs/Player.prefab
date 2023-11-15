@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d623d82c512bc7d448d05c6c2a97554d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowdownSpeed: 1.2
+  speed: 3
   deadZone: 0.2
   camera: {fileID: 0}
   interactionZone: {fileID: 7107437606704316317}
