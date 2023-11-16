@@ -17,10 +17,17 @@ public class PlayerManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject camera;
     [SerializeField] private GameObject interactionZone;
+    [SerializeField] private GameObject dialogueManager;
+    [SerializeField] private GameObject inputManagerGO;
+
+    private InputManager inputManager;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        inputManager = inputManagerGO.GetComponent<InputManager>();
+        inputManager.swapMap("PlayerControls");
     }
 
     //Keep this organized. Update() should contain as few functions as possible, and it should be obvious what the functions do.
@@ -83,58 +90,57 @@ public class PlayerManager : MonoBehaviour
 
     #region Animations
 
-    #warning THIS ANIMATION CODE DOES NOT WORK YET
-
     //This will handle walking animations and directional animations
     public void animatePlayer()
     {
         float rotation = Quaternion.LookRotation(Vector3.forward, (Vector3.up * playerMovement.x + Vector3.left * playerMovement.y)).eulerAngles.z;
+        float rotationStill = interactionZone.transform.eulerAngles.z;
         if (rb.velocity != Vector2.zero)
         {
             //The player in here is walking. We'll need to use walk animations
             if ((rotation >= 0 && rotation <= 45) || (rotation <= 360 && rotation >= 315))
             {
                 //Player is facing right. Use right walking animations
-                Debug.Log("Walking Right");
+                //Debug.Log("Walking Right");
             }
             else if (rotation >= 45 && rotation <= 135)
             {
                 //Player is facing up. Use upwards walking animations
-                Debug.Log("Walking Up");
+                //Debug.Log("Walking Up");
             }
             else if (rotation >= 135 && rotation <= 225)
             {
                 //Player is facing left. Use left walking animations
-                Debug.Log("Walking Left");
+                //Debug.Log("Walking Left");
             }
             else if (rotation >= 225 && rotation <= 315)
             {
                 //Player is facing down. Use downwards walking animations
-                Debug.Log("Walking Down");
+                //Debug.Log("Walking Down");
             }
         }
         else
         {
             //The player in here is standing still. We'll need to use idle animations
-            if ((rotation >= 0 && rotation <= 45) || (rotation <= 360 && rotation >= 315))
+            if ((rotationStill >= 0 && rotationStill <= 45) || (rotationStill <= 360 && rotationStill >= 315))
             {
                 //Player is facing right. Use right idle animations
-                Debug.Log("Standing Right");
+                //Debug.Log("Standing Right");
             }
-            else if (rotation >= 45 && rotation <= 135)
+            else if (rotationStill >= 45 && rotationStill <= 135)
             {
                 //Player is facing up. Use upwards idle animations
-                Debug.Log("Standing Up");
+                //Debug.Log("Standing Up");
             }
-            else if (rotation >= 135 && rotation <= 225)
+            else if (rotationStill >= 135 && rotationStill <= 225)
             {
                 //Player is facing left. Use left idle animations
-                Debug.Log("Standing Left");
+                //Debug.Log("Standing Left");
             }
-            else if (rotation >= 225 && rotation <= 315)
+            else if (rotationStill >= 225 && rotationStill <= 315)
             {
                 //Player is facing down. Use downwards idle animations
-                Debug.Log("Standing Down");
+                //Debug.Log("Standing Down");
             }
         }
     }
@@ -183,8 +189,9 @@ public class PlayerManager : MonoBehaviour
         //A significant amount of this code is for testing, and will most likely be majorly overhauled later on.
         if (inter.CompareTag("Text"))
         {
-            //Currently just displays the text to the log. In the future we will have textboxes that appear, but we haven't made those yet.
-            Debug.Log("Interacted Text: " + inter.GetComponent<InteractionText>().getText());
+            //Trigger a dialogue box to appear and interact with the user
+            //This takes the dialogueManager script, and uses the startDialogue function with the parameter of whatever is stored in the DialogueTrigger of the interacted with object.
+            dialogueManager.GetComponent<DialogueManager>().startDialogue(inter.GetComponent<DialogueTrigger>().triggerDialogue());
         }
     }
 
