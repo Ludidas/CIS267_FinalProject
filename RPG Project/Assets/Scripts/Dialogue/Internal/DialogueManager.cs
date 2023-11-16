@@ -4,18 +4,14 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour{
 
-    public GameObject triangle;
+    
     private FlashingTriangle triangleScript;
 
     private Queue<string> sentences;
-    
-    // Remember to set these when you create a DialogueManager GameObject in your scene
-    public GameObject dialogueBox;
-    public TMP_Text TMP_Name;
-    public TMP_Text TMP_Dialogue;
 
     private bool currentlyTalking; // used in this script so we don't run functions on every keypresses
     private string currentSentence;
@@ -25,6 +21,16 @@ public class DialogueManager : MonoBehaviour{
     private float waitTime;
     private int _iterator;
 
+    [Header("References")]
+    // Remember to set these when you create a DialogueManager GameObject in your scene
+    [SerializeField] public GameObject triangle;
+    [SerializeField] public GameObject dialogueBox;
+    [SerializeField] public TMP_Text TMP_Name;
+    [SerializeField] public TMP_Text TMP_Dialogue;
+
+    //This will be used to hotswap between control schemes to allow the user to navigate through the dialogues
+    [SerializeField] private GameObject inputManagerGO;
+    private InputManager inputManager;
 
     void Awake() {
         // only for making the tiny triangle flash
@@ -40,20 +46,49 @@ public class DialogueManager : MonoBehaviour{
         waitTime = 0.05f; // Speed in which each letter is typed
         curTime = waitTime; // curTime is equal to wait time at first so the first letter is typed right away
         _iterator = 1; // Set to 1 because we are using it for a substring
+
+        //This creates a link to the InputManager script
+        inputManager = inputManagerGO.GetComponent<InputManager>();
     }
 
-    private void Update() {
-        // I'm 40% sure JoystickButton0 is the A button
-        if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Space) && currentSentence == null) {
-            if (currentlyTalking) {
+    private void Update()
+    {
+        //// I'm 40% sure JoystickButton0 is the A button
+        //if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Space) && currentSentence == null)
+        //{
+        //    if (currentlyTalking)
+        //    {
+        //        displayNextSentence();
+        //    }
+        //}
+
+        //Had to destroy most of what's in here, except this part seems necessary so I left it.
+        //You'll find most of the code that was in here moved into onClickThrough(). -Nick
+        if (currentSentence != null)
+        {
+            typeDialogue();
+        }
+    }
+    
+    //Called by the Player Input object on the InputManager gameobject which is a child of Player.
+    //This will either speed up the dialogue or move to the next sentence.
+    public void onClickThrough(InputAction.CallbackContext value)
+    {
+        //Value is what is passed by the Player Input. value.started is true when the button is first pressed, then false when the button is released.
+        //There is a secret third pass which is also false, no idea where that comes from though. It just usually shows up.
+        if (value.started && currentSentence == null)
+        {
+            if (currentlyTalking)
+            {
+                Debug.Log("In currentlyTalking");
                 displayNextSentence();
             }
         }
-
-        if (currentSentence != null) {
-            // _iterator > 1 so we don't enter on the same key down that displays the next sentence
-            if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Space) && _iterator > 1) {
-                // waitTime is reset when typeDialogue() ends
+        if (currentSentence != null)
+        {
+            if (value.started && _iterator > 1)
+            {
+                Debug.Log("In _iterator > 1");
                 waitTime = 0f;
             }
             typeDialogue();
@@ -64,6 +99,9 @@ public class DialogueManager : MonoBehaviour{
     public void startDialogue(Dialogue d) {
         currentlyTalking = true;
         dialogueBox.SetActive(true);
+
+        //This switches the control map to the Dialogue settings, which prevents the player from moving.
+        inputManager.swapMap("Dialogue");
 
         // clear queue if there is one
         sentences.Clear();
@@ -94,6 +132,9 @@ public class DialogueManager : MonoBehaviour{
     private void endDialogue() {
         dialogueBox.SetActive(false);
         currentlyTalking = false;
+
+        //This switches the control map to the PlayerControls settings, which allows the player to move again.
+        inputManager.swapMap("PlayerControls");
 
         // it isn't typing, but we don't want the triangle to blink anymore
         // i don't think it matters because the whole dialogue box is inactive

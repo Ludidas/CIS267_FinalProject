@@ -13,10 +13,14 @@ public class DialogueTrigger : MonoBehaviour{
 
     public Dialogue dialogue;
 
-    public void triggerDialogue() {
+    public Dialogue triggerDialogue() {
         // I know its bad to use findObjectOfType
         // BUT we are only doing this when a dialogue is triggered and I don't want to have to drag the object into every single thing that can have dialogue
         // please forgive me
-        FindObjectOfType<DialogueManager>().startDialogue(dialogue);
+
+        //Hey Brad, this can easily be resolved by having the player have the dialogueManager saved, and just giving it to the player, which is what I've done. Enjoy :)
+        //FindObjectOfType<DialogueManager>().startDialogue(dialogue);
+
+        return dialogue;
     }
 }
