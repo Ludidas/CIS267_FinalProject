@@ -8,6 +8,8 @@ TagManager:
   - Wall
   - Text
   - player
+  - toOutside
+  - toinside
   layers:
   - Default
   - TransparentFX

@@ -16,6 +16,7 @@ public class Iceblock : MonoBehaviour
         rb= GetComponent<Rigidbody2D>();  
        startposx = transform.position.x;
         startposy = transform.position.y;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     // Update is called once per frame
@@ -36,24 +37,28 @@ public class Iceblock : MonoBehaviour
             if (collision.gameObject.transform.position.x > startposx && yaxis == false)
             {
                 rb.constraints = RigidbodyConstraints2D.None;
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 rb.constraints = RigidbodyConstraints2D.FreezePositionY;
                 rb.velocity = Vector2.left;
             }
             else if (collision.gameObject.transform.position.x < startposx && yaxis == false)
             {
                 rb.constraints = RigidbodyConstraints2D.None;
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 rb.constraints = RigidbodyConstraints2D.FreezePositionY;
                 rb.velocity = Vector2.right;
             }
             else if(collision.gameObject.transform.position.y > startposy && yaxis == true)
             {
                 rb.constraints = RigidbodyConstraints2D.None;
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 rb.constraints = RigidbodyConstraints2D.FreezePositionX;
                 rb.velocity = Vector2.down;
             }
             else if(collision.gameObject.transform.position.y < startposy && yaxis == true)
             {
                 rb.constraints = RigidbodyConstraints2D.None;
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 rb.constraints = RigidbodyConstraints2D.FreezePositionX;
                 rb.velocity = Vector2.up;
             }
