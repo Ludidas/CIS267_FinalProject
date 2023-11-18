@@ -8,7 +8,9 @@ public class PlayerManager : MonoBehaviour
 {
     private Vector2 playerMovement = Vector2.zero;
     private Vector2 playerRotation = Vector2.zero;
+    private Vector2 oldMovement;
     private Rigidbody2D rb;
+    public bool onice;
 
     [Header("Attributes")]
     [SerializeField] private float speed;
@@ -28,6 +30,7 @@ public class PlayerManager : MonoBehaviour
 
         inputManager = inputManagerGO.GetComponent<InputManager>();
         inputManager.swapMap("PlayerControls");
+        onice = false;
     }
 
     //Keep this organized. Update() should contain as few functions as possible, and it should be obvious what the functions do.
@@ -51,7 +54,13 @@ public class PlayerManager : MonoBehaviour
     public void movePlayer()
     {
         //Moves the player in their requested direction
-        rb.velocity = playerMovement * speed;
+        if (onice == false)
+        {
+            rb.velocity = playerMovement * speed;
+        }
+        
+        
+      
     }
 
     //Handles all of the player's rotations
@@ -195,5 +204,45 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Triggers
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Iceblock"))
+        {
+            onice = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Iceblock"))
+        {
+            onice = false;
+        }
+        else if(collision.gameObject.CompareTag("Ice"))
+        {
+            onice = true;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        
+        if (collision.gameObject.CompareTag("Iceblock"))
+        {
+            onice = false;
+        }
+        else if (collision.gameObject.CompareTag("Ice"))
+        {
+         
+            onice = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        onice = false;
+    }
     #endregion
 }

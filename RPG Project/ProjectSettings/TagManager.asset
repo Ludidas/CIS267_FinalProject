@@ -10,6 +10,8 @@ TagManager:
   - player
   - toOutside
   - toinside
+  - Ice
+  - Iceblock
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - UI
   - iceblock
   - Wall
-  - 
+  - Ice
   - 
   - 
   - 

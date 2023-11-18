@@ -51384,9 +51384,9 @@ GameObject:
   - component: {fileID: 1449211899}
   - component: {fileID: 1449211898}
   - component: {fileID: 1449211897}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ice
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63279,6 +63279,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8330027915258155941, guid: 4617164e9653202429b192bda113b25b, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 8360245182202318310, guid: 4617164e9653202429b192bda113b25b, type: 3}
       propertyPath: m_Name
       value: Player
@@ -64092,7 +64096,7 @@ GameObject:
   - component: {fileID: 1720640417}
   m_Layer: 6
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Iceblock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
