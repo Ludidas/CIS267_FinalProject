@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,9 +9,13 @@ public class PlayerManager : MonoBehaviour
 {
     private Vector2 playerMovement = Vector2.zero;
     private Vector2 playerRotation = Vector2.zero;
-    private Vector2 oldMovement;
+    private Vector2 iceMovementHold = Vector2.zero;
     private Rigidbody2D rb;
-    public bool onice;
+
+    //this is not control schemes, this is for moving as the player.
+    //Update this as needed
+    //0 is regular, 1 is ice, 2 is for being stopped on ice
+    private int movementType = 0;
 
     [Header("Attributes")]
     [SerializeField] private float speed;
@@ -30,7 +35,6 @@ public class PlayerManager : MonoBehaviour
 
         inputManager = inputManagerGO.GetComponent<InputManager>();
         inputManager.swapMap("PlayerControls");
-        onice = false;
     }
 
     //Keep this organized. Update() should contain as few functions as possible, and it should be obvious what the functions do.
@@ -53,14 +57,28 @@ public class PlayerManager : MonoBehaviour
     //Handles all of the player's movement
     public void movePlayer()
     {
-        //Moves the player in their requested direction
-        if (onice == false)
+        //We need to account for custom movement methods
+        //movementType 0 is for regular movement
+        if (movementType == 0)
         {
             rb.velocity = playerMovement * speed;
         }
-        
-        
-      
+        //movementType 1 is for ice movement
+        else if (movementType == 1)
+        {
+            rb.velocity = iceMovementHold * speed;
+        }
+        //movementType 2 is for ice movement when stopped on ice
+        else if (movementType == 2)
+        {
+            rb.velocity = playerMovement * speed;
+            //When the player starts moving again, swap back to regular ice movement.
+            if (rb.velocity != Vector2.zero)
+            {
+                iceMovementHold = playerMovement;
+                movementType = 1;
+            }
+        }
     }
 
     //Handles all of the player's rotations
@@ -206,43 +224,44 @@ public class PlayerManager : MonoBehaviour
 
     #endregion
 
-    #region Triggers
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Iceblock"))
-        {
-            onice = false;
-        }
-    }
+    #region Collisions
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Iceblock"))
+        //Ice Collision
+        if (collision.gameObject.CompareTag("Ice"))
         {
-            onice = false;
+            //We need to save what playerMovement was upon entering the ice, and set it back after swapping the map
+            iceMovementHold = playerMovement;
+            movementType = 1;
         }
-        else if(collision.gameObject.CompareTag("Ice"))
-        {
-            onice = true;
-        }
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
         
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        //Ice Block Collision
         if (collision.gameObject.CompareTag("Iceblock"))
         {
-            onice = false;
-        }
-        else if (collision.gameObject.CompareTag("Ice"))
-        {
-         
-            onice = true;
+            //If the iceblock has stopped, assume the user has too, and let the user move once
+            if (movementType == 1 && collision.gameObject.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
+            {
+                movementType = 2;
+                iceMovementHold = Vector2.zero;
+            }
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
-        onice = false;
+        //Ice Collision
+        if (collision.gameObject.CompareTag("Ice"))
+        {
+            //Let the player start moving naturally again
+            movementType = 0;
+            iceMovementHold = Vector2.zero;
+        }
     }
+
     #endregion
 }

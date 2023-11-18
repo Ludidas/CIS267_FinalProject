@@ -186,7 +186,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: ec47f75fe8aff1644ac73998f4ad31b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -257,7 +257,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.75}
+  m_Offset: {x: 0, y: 0.10841659}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0.03125, z: 0, w: 0.9375}
     pivot: {x: 0.5, y: 0}
@@ -268,7 +268,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.65625, y: 1.5}
+  m_Size: {x: 0.65625, y: 0.21693319}
   m_EdgeRadius: 0
 --- !u!1 &8880575648369933489
 GameObject:
@@ -396,6 +396,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8ef7c55d-0639-4429-896f-398291cbe818
     m_ActionName: Dialogue/ClickThrough
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6490979995542208485}
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+        m_MethodName: onTurn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4a772d62-a48b-402c-8007-30033be2209a
+    m_ActionName: OnIce/Rotate[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3bd3ae7a-c00b-4627-9f1b-0336f5958c95
+    m_ActionName: OnIce/Attack
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControls
@@ -415,6 +435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listOfMaps:
   - PlayerControls
+  - OnIce
   - Dialogue
 --- !u!1001 &7465449394124085546
 PrefabInstance:

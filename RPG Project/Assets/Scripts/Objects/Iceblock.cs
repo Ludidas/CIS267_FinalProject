@@ -3,79 +3,54 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//NOTE FROM NICK
+//Hi Chase, I wasn't 100% positive what this script was supposed to do, so I kinda just guessed.
+//It straightens the ice blocks to prevent them from moving at an angle. The old code was very messy
+//and confusing, and I'm not even really sure it worked. If this isn't what you wanted this script
+//to do, let me know and feel free to fix it or revert it. BTW collisions with rigidbodies move the
+//object already, so doing that in here is unnecessary.
+
 public class Iceblock : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private float startposx;
-    private float startposy;
-    private bool yaxis;
     
     // Start is called before the first frame update
     void Start()
     {
-        rb= GetComponent<Rigidbody2D>();  
-       startposx = transform.position.x;
-        startposy = transform.position.y;
+        rb= GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        straightenMovement();
     }
-  
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void straightenMovement()
     {
-      
-        if(collision.gameObject.CompareTag("Wall"))
+        //This script prevents the ice block from moving on an angle
+        if (rb.velocity.x <= 0)
         {
-           
-        }
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            if (collision.gameObject.transform.position.x > startposx && yaxis == false)
+            if (rb.velocity.x < -Mathf.Abs(rb.velocity.y))
             {
-                rb.constraints = RigidbodyConstraints2D.None;
-                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-                rb.constraints = RigidbodyConstraints2D.FreezePositionY;
-                rb.velocity = Vector2.left;
+                rb.velocity = new Vector2(rb.velocity.x, 0);
             }
-            else if (collision.gameObject.transform.position.x < startposx && yaxis == false)
+            else
             {
-                rb.constraints = RigidbodyConstraints2D.None;
-                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-                rb.constraints = RigidbodyConstraints2D.FreezePositionY;
-                rb.velocity = Vector2.right;
-            }
-            else if(collision.gameObject.transform.position.y > startposy && yaxis == true)
-            {
-                rb.constraints = RigidbodyConstraints2D.None;
-                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-                rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-                rb.velocity = Vector2.down;
-            }
-            else if(collision.gameObject.transform.position.y < startposy && yaxis == true)
-            {
-                rb.constraints = RigidbodyConstraints2D.None;
-                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-                rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-                rb.velocity = Vector2.up;
+                rb.velocity = new Vector2(0, rb.velocity.y);
             }
         }
-       
-        
-        
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        else
         {
-            yaxis = true;
-        } 
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        yaxis= false;
+            if (rb.velocity.x > Mathf.Abs(rb.velocity.y))
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+            }
+            else
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
+        }
     }
 }
