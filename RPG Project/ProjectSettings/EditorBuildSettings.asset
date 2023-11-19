@@ -9,9 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScreen.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/HubWorld.unity
+    guid: 2b9359bac39fba54da98a01ce88929e8
+  - enabled: 1
+    path: Assets/Scenes/DungeonCave.unity
+    guid: c494e9f8509d34543aaa37087c736f32
+  - enabled: 1
     path: Assets/Scenes/Dungeontwo.unity
     guid: 738f577dcc4fb204aae7853486740028
   - enabled: 1
     path: Assets/Scenes/Pathtotwo.unity
     guid: ddc73d2b9a606f543be6d39faaa5c769
+  - enabled: 1
+    path: Assets/Scenes/DungeonThree.unity
+    guid: 87a8fe34d760d294ca0f4a01f847fa9e
   m_configObjects: {}

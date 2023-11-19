@@ -35,6 +35,8 @@ public class PlayerManager : MonoBehaviour
 
         inputManager = inputManagerGO.GetComponent<InputManager>();
         inputManager.swapMap("PlayerControls");
+
+        transform.position = GameManager.getSpawnLocation();
     }
 
     //Keep this organized. Update() should contain as few functions as possible, and it should be obvious what the functions do.
