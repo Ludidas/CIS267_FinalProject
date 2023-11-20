@@ -90,6 +90,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f736c0c42ee437488d37bb751de4d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneName: 
+  zoneName: HubW
   xLoad: 0
   yLoad: 0
