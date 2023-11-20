@@ -8,10 +8,9 @@ TagManager:
   - Wall
   - Text
   - player
-  - toOutside
-  - toinside
   - Ice
   - Iceblock
+  - icewall
   layers:
   - Default
   - TransparentFX
@@ -22,7 +21,7 @@ TagManager:
   - iceblock
   - Wall
   - Ice
-  - 
+  - passthrough
   - 
   - 
   - 

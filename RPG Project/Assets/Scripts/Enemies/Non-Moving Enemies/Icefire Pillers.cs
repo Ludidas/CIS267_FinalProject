@@ -43,16 +43,26 @@ public class IcefirePillers : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        inrange = true;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            inrange = true;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        inrange = true;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            inrange = true;
+        }
     }
+    
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        inrange = false;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            inrange = false;
+        }
     }
 }
