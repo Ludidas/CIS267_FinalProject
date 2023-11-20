@@ -28,6 +28,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject inputManagerGO;
 
     private InputManager inputManager;
+    private Animator playerAnimator;
 
     private void Start()
     {
@@ -35,6 +36,8 @@ public class PlayerManager : MonoBehaviour
 
         inputManager = inputManagerGO.GetComponent<InputManager>();
         inputManager.swapMap("PlayerControls");
+
+        playerAnimator = GetComponent<Animator>();
 
         transform.position = GameManager.getSpawnLocation();
     }
@@ -126,30 +129,37 @@ public class PlayerManager : MonoBehaviour
         float rotationStill = interactionZone.transform.eulerAngles.z;
         if (rb.velocity != Vector2.zero)
         {
+            playerAnimator.SetBool("isWalking", true);
             //The player in here is walking. We'll need to use walk animations
             if ((rotation >= 0 && rotation <= 45) || (rotation <= 360 && rotation >= 315))
             {
                 //Player is facing right. Use right walking animations
                 //Debug.Log("Walking Right");
+
+                playerAnimator.SetInteger("direction", 2);
             }
             else if (rotation >= 45 && rotation <= 135)
             {
                 //Player is facing up. Use upwards walking animations
                 //Debug.Log("Walking Up");
+                playerAnimator.SetInteger("direction", 1);
             }
             else if (rotation >= 135 && rotation <= 225)
             {
                 //Player is facing left. Use left walking animations
                 //Debug.Log("Walking Left");
+                playerAnimator.SetInteger("direction", 3);
             }
             else if (rotation >= 225 && rotation <= 315)
             {
                 //Player is facing down. Use downwards walking animations
                 //Debug.Log("Walking Down");
+                playerAnimator.SetInteger("direction", 0);
             }
         }
         else
         {
+            playerAnimator.SetBool("isWalking", false);
             //The player in here is standing still. We'll need to use idle animations
             if ((rotationStill >= 0 && rotationStill <= 45) || (rotationStill <= 360 && rotationStill >= 315))
             {

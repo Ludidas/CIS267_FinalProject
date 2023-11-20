@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dusty Side Walk
+  m_Name: Dusty Right Idle
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,15 +21,7 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1016258396, guid: 48727b0a0be9ff847b44262b14cbf125, type: 3}
-    - time: 0.25
-      value: {fileID: 2093018657, guid: 48727b0a0be9ff847b44262b14cbf125, type: 3}
-    - time: 0.48333332
-      value: {fileID: -1016258396, guid: 48727b0a0be9ff847b44262b14cbf125, type: 3}
-    - time: 0.75
-      value: {fileID: -194117563, guid: 48727b0a0be9ff847b44262b14cbf125, type: 3}
-    - time: 1
-      value: {fileID: -194117563, guid: 48727b0a0be9ff847b44262b14cbf125, type: 3}
+      value: {fileID: -367187048, guid: 40000447be837764da20d8742592c0e9, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -52,17 +44,13 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1016258396, guid: 48727b0a0be9ff847b44262b14cbf125, type: 3}
-    - {fileID: 2093018657, guid: 48727b0a0be9ff847b44262b14cbf125, type: 3}
-    - {fileID: -1016258396, guid: 48727b0a0be9ff847b44262b14cbf125, type: 3}
-    - {fileID: -194117563, guid: 48727b0a0be9ff847b44262b14cbf125, type: 3}
-    - {fileID: -194117563, guid: 48727b0a0be9ff847b44262b14cbf125, type: 3}
+    - {fileID: -367187048, guid: 40000447be837764da20d8742592c0e9, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.0166667
+    m_StopTime: 0.016666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
