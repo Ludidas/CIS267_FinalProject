@@ -194,11 +194,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6895364476161064105, guid: 21b33f8f28261204e8fede9dcf2ba976, type: 3}
       propertyPath: xLoad
-      value: 39.97
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6895364476161064105, guid: 21b33f8f28261204e8fede9dcf2ba976, type: 3}
       propertyPath: yLoad
-      value: -1.495555
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 6895364476161064105, guid: 21b33f8f28261204e8fede9dcf2ba976, type: 3}
       propertyPath: zoneName

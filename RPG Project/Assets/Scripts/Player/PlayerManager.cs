@@ -129,6 +129,8 @@ public class PlayerManager : MonoBehaviour
         float rotationStill = interactionZone.transform.eulerAngles.z;
         if (rb.velocity != Vector2.zero)
         {
+            //For direction, 0 is facing down, 1 is facing up, 2 is facing right, 3 is facing left
+
             playerAnimator.SetBool("isWalking", true);
             //The player in here is walking. We'll need to use walk animations
             if ((rotation >= 0 && rotation <= 45) || (rotation <= 360 && rotation >= 315))
@@ -160,6 +162,8 @@ public class PlayerManager : MonoBehaviour
         else
         {
             playerAnimator.SetBool("isWalking", false);
+
+
             //The player in here is standing still. We'll need to use idle animations
             if ((rotationStill >= 0 && rotationStill <= 45) || (rotationStill <= 360 && rotationStill >= 315))
             {
