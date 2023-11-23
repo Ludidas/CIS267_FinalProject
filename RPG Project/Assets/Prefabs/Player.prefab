@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 696982434653388646}
   - component: {fileID: 2272488814535889568}
   - component: {fileID: 8330027915258155941}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: InteractionZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,14 +70,14 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1024
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1, y: 0}
+  m_Offset: {x: 0.867388, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -88,7 +88,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2, y: 2}
+  m_Size: {x: 1.8723121, y: 2}
   m_EdgeRadius: 0
 --- !u!1 &8360245182202318310
 GameObject:
@@ -143,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   deadZone: 0.2
+  fallingLength: 1
   camera: {fileID: 0}
   interactionZone: {fileID: 7107437606704316317}
   dialogueManager: {fileID: 6909852863834550314}
@@ -187,7 +188,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 2
   m_Sprite: {fileID: -1167213522, guid: 8113aceab3d39ab49b0d01d7ba42cc86, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -198,7 +199,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!50 &1609061247863107144
 Rigidbody2D:
   serializedVersion: 4
@@ -258,10 +259,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.10841659}
+  m_Offset: {x: 0, y: 0.13}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.03}
     oldSize: {x: 1, y: 2}
     newSize: {x: 0.65625, y: 1.5}
     adaptiveTilingThreshold: 0.5
@@ -269,7 +270,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.65625, y: 0.21693319}
+  m_Size: {x: 0.82, y: 0.46}
   m_EdgeRadius: 0
 --- !u!95 &4536999253387393823
 Animator:
@@ -418,26 +419,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8ef7c55d-0639-4429-896f-398291cbe818
     m_ActionName: Dialogue/ClickThrough
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6490979995542208485}
-        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
-        m_MethodName: onTurn
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 4a772d62-a48b-402c-8007-30033be2209a
-    m_ActionName: OnIce/Rotate[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3bd3ae7a-c00b-4627-9f1b-0336f5958c95
-    m_ActionName: OnIce/Attack
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControls

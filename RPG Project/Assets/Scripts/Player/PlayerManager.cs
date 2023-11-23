@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -15,11 +17,19 @@ public class PlayerManager : MonoBehaviour
     //this is not control schemes, this is for moving as the player.
     //Update this as needed
     //0 is regular, 1 is ice, 2 is for being stopped on ice
-    private int movementType = 0;
+    //-1 can be used to prevent any movement
+    [NonSerialized] public int movementType = 0;
+
+    private bool cameraLock;
+
+    //These are both used for falling while in the cave dungeon
+    private float isFalling;
+    private bool touchingCaveUnder;
 
     [Header("Attributes")]
     [SerializeField] private float speed;
     [SerializeField] private float deadZone;
+    [SerializeField] private float fallingLength;
 
     [Header("References")]
     [SerializeField] private GameObject camera;
@@ -40,6 +50,10 @@ public class PlayerManager : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
 
         transform.position = GameManager.getSpawnLocation();
+
+        cameraLock = false;
+
+        isFalling = -1f;
     }
 
     //Keep this organized. Update() should contain as few functions as possible, and it should be obvious what the functions do.
@@ -57,6 +71,9 @@ public class PlayerManager : MonoBehaviour
         movePlayer();
         rotatePlayer();
         moveCamera();
+
+        //Custom falling animation for when the player falls off a ledge
+        caveGroundFall();
     }
 
     //Handles all of the player's movement
@@ -68,21 +85,10 @@ public class PlayerManager : MonoBehaviour
         {
             rb.velocity = playerMovement * speed;
         }
-        //movementType 1 is for ice movement
-        else if (movementType == 1)
+        //movementType 1 and 2 is for ice movement
+        else if (movementType == 1 || movementType == 2)
         {
-            rb.velocity = iceMovementHold * speed;
-        }
-        //movementType 2 is for ice movement when stopped on ice
-        else if (movementType == 2)
-        {
-            rb.velocity = playerMovement * speed;
-            //When the player starts moving again, swap back to regular ice movement.
-            if (rb.velocity != Vector2.zero)
-            {
-                iceMovementHold = playerMovement;
-                movementType = 1;
-            }
+            iceMovement();
         }
     }
 
@@ -101,12 +107,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    //Handles the movement of the camera
-    public void moveCamera()
-    {
-        //Forces the camera to follow the player without having to parent it.
-        camera.transform.position = new Vector3(transform.position.x, transform.position.y, -10f);
-    }
+    
 
     //deadzone() returns false when the joystick is too close to the middle, and true if it's far enough out
     public bool deadzone(Vector2 pDirection)
@@ -120,6 +121,27 @@ public class PlayerManager : MonoBehaviour
 
     #endregion
 
+    #region Camera
+
+    //Handles the movement of the camera
+    public void moveCamera()
+    {
+        //Forces the camera to follow the player without having to parent it.
+        if (!cameraLock)
+        {
+            camera.transform.position = new Vector3(transform.position.x, transform.position.y, -10f);
+        }
+        
+    }
+
+    //Locks or unlocks the camera based on l (true for lock, false for unlock)
+    public void lockCamera(bool l)
+    {
+        cameraLock = l;
+    }
+
+    #endregion
+
     #region Animations
 
     //This will handle walking animations and directional animations
@@ -127,7 +149,7 @@ public class PlayerManager : MonoBehaviour
     {
         float rotation = Quaternion.LookRotation(Vector3.forward, (Vector3.up * playerMovement.x + Vector3.left * playerMovement.y)).eulerAngles.z;
         float rotationStill = interactionZone.transform.eulerAngles.z;
-        if (rb.velocity != Vector2.zero)
+        if (rb.velocity != Vector2.zero && movementType != -1)
         {
             //For direction, 0 is facing down, 1 is facing up, 2 is facing right, 3 is facing left
 
@@ -245,16 +267,76 @@ public class PlayerManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Ice Collision
+        iceTriggerEnter(collision);
+
+        //Cave Under Collision
+        caveUnderTriggerEnter(collision);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        //Ice Block Collision
+        iceBlockCollisionStay(collision);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //Ice Collision
+        iceTriggerExit(collision);
+        
+        //Cave Ground Collision
+        caveGroundTriggerExit(collision);
+
+        //Cave Under Collision
+        caveUnderTriggerExit(collision);
+    }
+
+    #endregion
+
+    #region Ice
+
+    private void iceMovement()
+    {
+        if (movementType == 1)
+        {
+            rb.velocity = iceMovementHold * speed;
+        }
+        //movementType 2 is for ice movement when stopped on ice
+        else if (movementType == 2)
+        {
+            rb.velocity = playerMovement * speed;
+            //When the player starts moving again, swap back to regular ice movement.
+            if (rb.velocity != Vector2.zero)
+            {
+                iceMovementHold = playerMovement;
+                movementType = 1;
+            }
+        }
+    }
+
+    private void iceTriggerEnter(Collider2D collision)
+    {
+        //Ice Collision
         if (collision.gameObject.CompareTag("Ice"))
         {
             //We need to save what playerMovement was upon entering the ice, and set it back after swapping the map
             iceMovementHold = playerMovement;
             movementType = 1;
         }
-        
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void iceTriggerExit(Collider2D collision)
+    {
+        //Ice Collision
+        if (collision.gameObject.CompareTag("Ice"))
+        {
+            //Let the player start moving naturally again
+            movementType = 0;
+            iceMovementHold = Vector2.zero;
+        }
+    }
+
+    private void iceBlockCollisionStay(Collision2D collision)
     {
         //Ice Block Collision
         if (collision.gameObject.CompareTag("Iceblock"))
@@ -268,15 +350,61 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    #endregion
+
+    #region Cave Platforms
+
+    private void caveGroundTriggerExit(Collider2D collision)
     {
-        //Ice Collision
-        if (collision.gameObject.CompareTag("Ice"))
+        if (collision.gameObject.CompareTag("CaveGround") && isFalling <= 0)
         {
-            //Let the player start moving naturally again
-            movementType = 0;
-            iceMovementHold = Vector2.zero;
+            Debug.Log("FALL");
+            
+            lockCamera(true);
+            movementType = -1;
+            isFalling = fallingLength;
+            Debug.Log("Health: " + GameManager.getHealth());
         }
+    }
+
+    private void caveUnderTriggerEnter(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("CaveUnder"))
+        {
+            Debug.Log("Enter CaveUnder");
+            touchingCaveUnder = true;
+        }
+    }
+
+    private void caveUnderTriggerExit(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("CaveUnder"))
+        {
+            Debug.Log("Exit CaveUnder");
+            touchingCaveUnder = false;
+        }
+    }
+
+    private void caveGroundFall()
+    {
+        if (isFalling > 0)
+        {
+            GetComponent<SpriteRenderer>().sortingOrder = (touchingCaveUnder ? 0 : -2);
+
+            rb.velocity = Vector2.down * speed * 4;
+
+            isFalling -= Time.deltaTime;
+        }
+        else if (isFalling != -1)
+        {
+            isFalling = -1;
+            movementType = 0;
+            GameManager.changeHealth(-1.0f);
+            transform.position = GameManager.getSpawnLocation();
+            lockCamera(false);
+            GetComponent<SpriteRenderer>().sortingOrder = 2;
+        }
+        
     }
 
     #endregion

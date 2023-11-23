@@ -814,8 +814,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: RPG Project
-  metroPackageVersion: 
+  metroPackageName: RPGProject
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -823,7 +823,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: RPG Project
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: RPG Project
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0

@@ -16,8 +16,15 @@ public class LoadZone : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.setSpawnLocation(new Vector2(xLoad, yLoad));
-            SceneManager.LoadScene(zoneName);
+            //Ensure the player has regular control of the player upon entering the loadzone.
+            //This will prevent loadzones from working when the player is on ice or falling.
+            //This most likely won't ever be a problem but just in case this code is here.
+            if (collision.gameObject.GetComponent<PlayerManager>().movementType == 1)
+            {
+                GameManager.setSpawnLocation(new Vector2(xLoad, yLoad));
+                SceneManager.LoadScene(zoneName);
+            }
+            
         }
     }
 }

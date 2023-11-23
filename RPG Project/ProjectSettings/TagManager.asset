@@ -11,6 +11,8 @@ TagManager:
   - Ice
   - Iceblock
   - icewall
+  - CaveGround
+  - CaveUnder
   layers:
   - Default
   - TransparentFX
@@ -22,8 +24,8 @@ TagManager:
   - Wall
   - Ice
   - passthrough
-  - 
-  - 
+  - Interactions
+  - CaveGround
   - 
   - 
   - 
