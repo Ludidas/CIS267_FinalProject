@@ -14,6 +14,9 @@ public class PlayerManager : MonoBehaviour
     private Vector2 iceMovementHold = Vector2.zero;
     private Rigidbody2D rb;
 
+    //This is for animations to tell which directional system should be used
+    private bool playerIsRotating;
+
     //this is not control schemes, this is for moving as the player.
     //Update this as needed
     //0 is regular, 1 is ice, 2 is for being stopped on ice
@@ -99,15 +102,15 @@ public class PlayerManager : MonoBehaviour
         if (deadzone(playerRotation))
         {
             interactionZone.transform.rotation = Quaternion.LookRotation(Vector3.forward, (Vector3.up * playerRotation.x + Vector3.left * playerRotation.y));
+            playerIsRotating = true;
         }
         //Rotates the interactionZone of the player if the user is not using the rotate joystick
         else if (deadzone(playerMovement))
         {
             interactionZone.transform.rotation = Quaternion.LookRotation(Vector3.forward, (Vector3.up * playerMovement.x + Vector3.left * playerMovement.y));
+            playerIsRotating = false;
         }
     }
-
-    
 
     //deadzone() returns false when the joystick is too close to the middle, and true if it's far enough out
     public bool deadzone(Vector2 pDirection)
@@ -147,7 +150,16 @@ public class PlayerManager : MonoBehaviour
     //This will handle walking animations and directional animations
     public void animatePlayer()
     {
-        float rotation = Quaternion.LookRotation(Vector3.forward, (Vector3.up * playerMovement.x + Vector3.left * playerMovement.y)).eulerAngles.z;
+        float rotation;
+        if (playerIsRotating && deadzone(playerMovement))
+        {
+            rotation = interactionZone.transform.eulerAngles.z;
+        }
+        else
+        {
+            rotation = Quaternion.LookRotation(Vector3.forward, (Vector3.up * playerMovement.x + Vector3.left * playerMovement.y)).eulerAngles.z;
+        }
+        
         float rotationStill = interactionZone.transform.eulerAngles.z;
         if (rb.velocity != Vector2.zero && movementType != -1)
         {
@@ -155,24 +167,11 @@ public class PlayerManager : MonoBehaviour
 
             playerAnimator.SetBool("isWalking", true);
             //The player in here is walking. We'll need to use walk animations
-            if ((rotation >= 0 && rotation <= 45) || (rotation <= 360 && rotation >= 315))
-            {
-                //Player is facing right. Use right walking animations
-                //Debug.Log("Walking Right");
-
-                playerAnimator.SetInteger("direction", 2);
-            }
-            else if (rotation >= 45 && rotation <= 135)
+            if (rotation >= 45 && rotation <= 135)
             {
                 //Player is facing up. Use upwards walking animations
                 //Debug.Log("Walking Up");
                 playerAnimator.SetInteger("direction", 1);
-            }
-            else if (rotation >= 135 && rotation <= 225)
-            {
-                //Player is facing left. Use left walking animations
-                //Debug.Log("Walking Left");
-                playerAnimator.SetInteger("direction", 3);
             }
             else if (rotation >= 225 && rotation <= 315)
             {
@@ -180,32 +179,45 @@ public class PlayerManager : MonoBehaviour
                 //Debug.Log("Walking Down");
                 playerAnimator.SetInteger("direction", 0);
             }
+            else if (rotation >= 135 && rotation <= 225)
+            {
+                //Player is facing left. Use left walking animations
+                //Debug.Log("Walking Left");
+                playerAnimator.SetInteger("direction", 3);
+            }
+            else if ((rotation >= 0 && rotation <= 45) || (rotation <= 360 && rotation >= 315))
+            {
+                //Player is facing right. Use right walking animations
+                //Debug.Log("Walking Right");
+                playerAnimator.SetInteger("direction", 2);
+            }
         }
         else
         {
             playerAnimator.SetBool("isWalking", false);
-
-
+            Debug.Log("PLAYER STOPPED");
             //The player in here is standing still. We'll need to use idle animations
-            if ((rotationStill >= 0 && rotationStill <= 45) || (rotationStill <= 360 && rotationStill >= 315))
+            if (rotationStill >= 45 && rotationStill <= 135)
             {
-                //Player is facing right. Use right idle animations
-                //Debug.Log("Standing Right");
-            }
-            else if (rotationStill >= 45 && rotationStill <= 135)
-            {
-                //Player is facing up. Use upwards idle animations
-                //Debug.Log("Standing Up");
-            }
-            else if (rotationStill >= 135 && rotationStill <= 225)
-            {
-                //Player is facing left. Use left idle animations
-                //Debug.Log("Standing Left");
+                //Player is facing up.
+                playerAnimator.SetBool("isWalking", true);
+                playerAnimator.SetInteger("direction", 1);
+                playerAnimator.SetBool("isWalking", false);
             }
             else if (rotationStill >= 225 && rotationStill <= 315)
             {
-                //Player is facing down. Use downwards idle animations
-                //Debug.Log("Standing Down");
+                //Player is facing down.
+                playerAnimator.SetInteger("direction", 0);
+            }
+            else if (rotationStill >= 135 && rotationStill <= 225)
+            {
+                //Player is facing left.
+                playerAnimator.SetInteger("direction", 3);
+            }
+            else if ((rotationStill >= 0 && rotationStill <= 45) || (rotationStill <= 360 && rotationStill >= 315))
+            {
+                //Player is facing right.
+                playerAnimator.SetInteger("direction", 2);
             }
         }
     }
@@ -264,32 +276,40 @@ public class PlayerManager : MonoBehaviour
 
     #region Collisions
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //Ice Collision
-        iceTriggerEnter(collision);
+    //Rather than having collisions attached to the PlayerManager class, each one is attached to its
+    //respective hitbox to prevent incorrect colliders from sending incorrect collisions.
+    //You can find each script for each hitbox attached to the player's children.
 
-        //Cave Under Collision
-        caveUnderTriggerEnter(collision);
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    //Ice Collision
+    //    iceTriggerEnter(collision);
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        //Ice Block Collision
-        iceBlockCollisionStay(collision);
-    }
+    //    //Cave Under Collision
+    //    caveUnderTriggerEnter(collision);
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        //Ice Collision
-        iceTriggerExit(collision);
+    //    Debug.Log("Collision: ");
+    //}
+
+    //private void OnCollisionStay2D(Collision2D collision)
+    //{
+    //    //Ice Block Collision
+    //    iceBlockCollisionStay(collision);
+
+    //    Debug.Log("Collision: " + collision.contacts[0].otherCollider.name);
+    //}
+
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    //Ice Collision
+    //    iceTriggerExit(collision);
         
-        //Cave Ground Collision
-        caveGroundTriggerExit(collision);
+    //    //Cave Ground Collision
+    //    caveGroundTriggerExit(collision);
 
-        //Cave Under Collision
-        caveUnderTriggerExit(collision);
-    }
+    //    //Cave Under Collision
+    //    caveUnderTriggerExit(collision);
+    //}
 
     #endregion
 
@@ -314,7 +334,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void iceTriggerEnter(Collider2D collision)
+    public void iceTriggerEnter(Collider2D collision)
     {
         //Ice Collision
         if (collision.gameObject.CompareTag("Ice"))
@@ -325,7 +345,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void iceTriggerExit(Collider2D collision)
+    public void iceTriggerExit(Collider2D collision)
     {
         //Ice Collision
         if (collision.gameObject.CompareTag("Ice"))
@@ -336,7 +356,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void iceBlockCollisionStay(Collision2D collision)
+    public void iceBlockCollisionStay(Collision2D collision)
     {
         //Ice Block Collision
         if (collision.gameObject.CompareTag("Iceblock"))
@@ -354,7 +374,7 @@ public class PlayerManager : MonoBehaviour
 
     #region Cave Platforms
 
-    private void caveGroundTriggerExit(Collider2D collision)
+    public void caveGroundTriggerExit(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("CaveGround") && isFalling <= 0)
         {
@@ -367,7 +387,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void caveUnderTriggerEnter(Collider2D collision)
+    public void caveUnderTriggerEnter(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("CaveUnder"))
         {
@@ -376,7 +396,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void caveUnderTriggerExit(Collider2D collision)
+    public void caveUnderTriggerExit(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("CaveUnder"))
         {
