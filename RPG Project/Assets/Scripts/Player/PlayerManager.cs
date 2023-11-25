@@ -195,14 +195,12 @@ public class PlayerManager : MonoBehaviour
         else
         {
             playerAnimator.SetBool("isWalking", false);
-            Debug.Log("PLAYER STOPPED");
+
             //The player in here is standing still. We'll need to use idle animations
             if (rotationStill >= 45 && rotationStill <= 135)
             {
                 //Player is facing up.
-                playerAnimator.SetBool("isWalking", true);
                 playerAnimator.SetInteger("direction", 1);
-                playerAnimator.SetBool("isWalking", false);
             }
             else if (rotationStill >= 225 && rotationStill <= 315)
             {
