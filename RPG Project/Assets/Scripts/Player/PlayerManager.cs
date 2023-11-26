@@ -39,6 +39,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject interactionZone;
     [SerializeField] private GameObject dialogueManager;
     [SerializeField] private GameObject inputManagerGO;
+    [SerializeField] private GameObject weaponsManager;
 
     private InputManager inputManager;
     private Animator playerAnimator;
@@ -102,12 +103,14 @@ public class PlayerManager : MonoBehaviour
         if (deadzone(playerRotation))
         {
             interactionZone.transform.rotation = Quaternion.LookRotation(Vector3.forward, (Vector3.up * playerRotation.x + Vector3.left * playerRotation.y));
+            weaponsManager.transform.rotation = Quaternion.LookRotation(Vector3.forward, (Vector3.up * playerRotation.x + Vector3.left * playerRotation.y));
             playerIsRotating = true;
         }
         //Rotates the interactionZone of the player if the user is not using the rotate joystick
         else if (deadzone(playerMovement))
         {
             interactionZone.transform.rotation = Quaternion.LookRotation(Vector3.forward, (Vector3.up * playerMovement.x + Vector3.left * playerMovement.y));
+            weaponsManager.transform.rotation = Quaternion.LookRotation(Vector3.forward, (Vector3.up * playerMovement.x + Vector3.left * playerMovement.y));
             playerIsRotating = false;
         }
     }
@@ -237,6 +240,21 @@ public class PlayerManager : MonoBehaviour
         Vector2 inputTurn = value.ReadValue<Vector2>();
         playerRotation = inputTurn;
     }
+    
+    public void onUse(InputAction.CallbackContext value)
+    {
+        Debug.Log("USED");
+        if (value.started)
+        {
+            GameObject curItem = InventorySystem.getCurItem();
+            //Lo' and behold, we need to check what the player is holding. Based on that we can do a variety of things.
+
+            //Right now I'm only going to work on the combat system. I am going to assume we're holding a sword and work
+            //based on that.
+            checkItemType(curItem);
+        }
+        
+    }
 
     //Interacts with whatever the player is looking at
     public void onInteract(InputAction.CallbackContext value)
@@ -272,6 +290,37 @@ public class PlayerManager : MonoBehaviour
 
     #endregion
 
+    #region Using Items
+
+    private void checkItemType(GameObject curItem)
+    {
+        //Just attacking because inventory is not set up yet
+        attackSword();
+        //Make sure we're holding an item
+        if (curItem == null)
+        {
+            return;
+        }
+        //If we are holding an item, check its tags
+        if (curItem.CompareTag("Weapon"))
+        {
+            //Assuming it's a sword :shrug:
+            //Change this later lol
+            
+        }
+    }
+
+    #endregion
+
+    #region Combat
+
+    private void attackSword()
+    {
+        weaponsManager.GetComponent<WeaponManager>().attackSword();
+    }
+
+    #endregion
+
     #region Collisions
 
     //Rather than having collisions attached to the PlayerManager class, each one is attached to its
@@ -301,7 +350,7 @@ public class PlayerManager : MonoBehaviour
     //{
     //    //Ice Collision
     //    iceTriggerExit(collision);
-        
+
     //    //Cave Ground Collision
     //    caveGroundTriggerExit(collision);
 

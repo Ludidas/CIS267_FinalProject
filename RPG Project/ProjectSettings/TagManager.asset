@@ -7,12 +7,12 @@ TagManager:
   - IceFloors
   - Wall
   - Text
-  - player
   - Ice
   - Iceblock
   - icewall
   - CaveGround
   - CaveUnder
+  - Weapon
   layers:
   - Default
   - TransparentFX
