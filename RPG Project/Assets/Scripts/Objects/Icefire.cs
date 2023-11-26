@@ -8,12 +8,14 @@ public class Icefire : MonoBehaviour
     private float x;
     private float y;
     public Transform player;
-    private float move;
+    private Rigidbody2D rb;
+    public float move;
     private bool inrange;
     // Start is called before the first frame update
     void Start()
     {
-        move = 3 * Time.deltaTime;
+        move = (float).1;
+        rb = GetComponent<Rigidbody2D>();
         inrange = false;
     }
 
@@ -22,7 +24,7 @@ public class Icefire : MonoBehaviour
     {
         if (inrange)
         {
-            transform.position = Vector2.MoveTowards(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(player.gameObject.transform.position.x, player.gameObject.transform.position.y), move);
+            rb.MovePosition(Vector2.MoveTowards(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(player.gameObject.transform.position.x, player.gameObject.transform.position.y), move));
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
