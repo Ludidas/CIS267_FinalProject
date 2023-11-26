@@ -12,7 +12,6 @@ TagManager:
   - icewall
   - CaveGround
   - CaveUnder
-  - Weapon
   layers:
   - Default
   - TransparentFX
