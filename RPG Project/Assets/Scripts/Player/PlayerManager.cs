@@ -87,7 +87,15 @@ public class PlayerManager : MonoBehaviour
         //movementType 0 is for regular movement
         if (movementType == 0)
         {
-            rb.velocity = playerMovement * speed;
+            if (deadzone(playerMovement))
+            {
+                rb.velocity = playerMovement * speed;
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
+            }
+            
         }
         //movementType 1 and 2 is for ice movement
         else if (movementType == 1 || movementType == 2)
@@ -154,7 +162,7 @@ public class PlayerManager : MonoBehaviour
     public void animatePlayer()
     {
         float rotation;
-        if (playerIsRotating && deadzone(playerMovement))
+        if (playerIsRotating)
         {
             rotation = interactionZone.transform.eulerAngles.z;
         }
@@ -279,12 +287,17 @@ public class PlayerManager : MonoBehaviour
     public void checkInteractions(GameObject inter)
     {
         //This is where any interactions will occur. For example, talking to characters, looking at signs, picking up items, etc.
-        //A significant amount of this code is for testing, and will most likely be majorly overhauled later on.
         if (inter.CompareTag("Text"))
         {
             //Trigger a dialogue box to appear and interact with the user
             //This takes the dialogueManager script, and uses the startDialogue function with the parameter of whatever is stored in the DialogueTrigger of the interacted with object.
             dialogueManager.GetComponent<DialogueManager>().startDialogue(inter.GetComponent<DialogueTrigger>().triggerDialogue());
+        }
+        if (inter.CompareTag("MemorizePuzzle"))
+        {
+            //This is for the Memorize Puzzle in the DungeonCave scene.
+            Debug.Log("Interaction Memorize Puzzle");
+            inter.GetComponent<MemorizeGameBlocks>().interacted();
         }
     }
 

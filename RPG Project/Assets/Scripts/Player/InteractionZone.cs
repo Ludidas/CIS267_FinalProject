@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InteractionZone : MonoBehaviour
@@ -13,7 +14,7 @@ public class InteractionZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (selectedObject == null && collision.CompareTag("Text"))
+        if (selectedObject == null && (collision.CompareTag("Text") || collision.CompareTag("MemorizePuzzle")))
         {
             selectedObject = collision.gameObject;
         }
