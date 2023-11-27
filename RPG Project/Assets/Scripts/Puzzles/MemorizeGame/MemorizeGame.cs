@@ -83,6 +83,7 @@ public class MemorizeGame : MonoBehaviour
         if (orderOfPuzzle[stepInCurrentMove] == num)
         {
             stepInCurrentMove++;
+            timer = 0f;
             if (stepInCurrentMove > step)
             {
                 step++;

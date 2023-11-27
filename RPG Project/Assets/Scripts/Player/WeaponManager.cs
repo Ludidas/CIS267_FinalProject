@@ -33,6 +33,9 @@ public class WeaponManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Damage Enemies
+        if (collision.CompareTag("Enemy"))
+        {
+            collision.GetComponent<Enemy>().takeDamage(damage);
+        }
     }
 }
