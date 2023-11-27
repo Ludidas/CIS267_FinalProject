@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 
 public static class InventorySystem
 {
@@ -18,56 +20,41 @@ public static class InventorySystem
     //addItemToInv(GameObject) - adds item to the inventory
     //useItem() - this is where the code of of an item use will go (uses current item)
     //removeItem() - removes the current item in hand from inventory (DOES NOT DELETE THE ITEM IN HAND)
-    //itemCycleUp() - switches to the next item in the inventory
-    //itemCycleDown() - switches to the previous item in the inventory
+    //itemCycle() - switches to the next item in the inventory
     //displayInventory() - displays all the inventory items in the log (for testing)
     //getCurItem() - returns the current Item (useful when instatiating)
     //
-    //NOTE: THIS CODE DOES NOT AND CAN NOT HANDLE THE INSTANTIATE FUNCTION! This means the script cannot make an
-    //item spawn in the game, it will only cycle through items in the inventory. (instantiation must be handled
-    //in a different, nonstatic script).
     //
     //pls msg me if there is any sort of problem with this script or if you suggest changes.
     //===========================================================================================================
 
 
     private static GameObject[] inventory;
+    private static GameObject swordSlot;
+    private static GameObject upgradedSwordSlot;
+    private static GameObject armCannonSlot;
     private static GameObject curItem;
     private static int curPos;
-
-    public static int inventorySize;
-    public static GameObject empty;
+    public static int inventoryMaxSize;
+    
 
     //========================================
-    //PLEASE SET THESE
+    //PLEASE SET THIS
 
     //size of the inventory
-    public static void setInventorySize(int s)
+    public static void setInventoryMaxSize(int s)
     {
-        inventorySize = s;
-    }
-
-    //when a slot in the inventory is empty, an empty gameObject called "empty" will be a placeholder 
-    public static void setEmpty(GameObject e)
-    {
-        empty = e;
+        inventoryMaxSize = s;
     }
     //========================================
 
     
-    //creates inventory and sets every spot in the inventory to empty    
+    //creates inventory    
     public static void initializeInv()
     {
+        inventory = new GameObject[inventoryMaxSize];
+
         curPos = 0;
-
-        inventorySize++;
-
-        inventory = new GameObject[inventorySize];
-
-        for(int i = 0; i < inventorySize; i++)
-        {
-            inventory[i] = empty;
-        }
 
         curItem = inventory[curPos];
 
@@ -77,6 +64,26 @@ public static class InventorySystem
     //puts item into the player's inventory
     public static void addItemToInv(GameObject item)
     {
+        //if the item is a sword or other weapon, then it gets its own slot
+        if(item.CompareTag("Sword"))
+        {
+            swordSlot = item;
+
+            return;
+        }
+        else if(item.CompareTag("Weapon"))
+        {
+            upgradedSwordSlot = item;
+
+            return;
+        }
+        else if(item.CompareTag("Weapon2"))
+        {
+            armCannonSlot = item;
+
+            return;
+        }
+
         //set current position in inventory to 0
         curPos = 0;
 
@@ -84,10 +91,10 @@ public static class InventorySystem
         do
         {
             curPos++;
-        } while(inventory[curPos] != empty && curPos <= inventorySize);
+        } while(inventory[curPos] != null && curPos <= inventoryMaxSize);
 
         //inventory is full
-        if(curPos == inventorySize && inventory[curPos] != empty)
+        if(curPos == inventoryMaxSize && inventory[curPos] != null)
         {
             return;
         }
@@ -98,46 +105,20 @@ public static class InventorySystem
         //set curItem to the new item in inventory
         curItem = inventory[curPos];
 
-        //this is the part where you will use instantiate in your script to show the item in the player's hand
-
         //displayInventory();
-    }
-    
-    //once we have collectables
-    //collectables with different tags can be used differently
-    public static void useItem()
-    {
-        //Debug.Log("Using Item");
-
-        //these are example tags to show how the code works
-        if(curItem.tag.Equals("Food"))
-        {
-            //eats item
-            //Debug.Log("Eating item");
-
-            //removes it from inventory
-        }
-        else if(curItem.tag.Equals("Sword"))
-        {
-            //sword swing
-        }
-        else if(curItem.tag.Equals("Shield"))
-        {
-            //shield block
-        }
     }
 
     //sets current item in inventory to empty
     public static void removeItem()
     {
-        inventory[curPos] = empty;
+        inventory[curPos] = null;
     }
 
     //cycle to next spot in inventory
-    public static void itemCycleUp()
+    public static void itemCycle()
     {
         //cycle up in inventory
-        if(curPos == inventorySize)
+        if(curPos == inventoryMaxSize)
         {
             curPos = 0;
 
@@ -151,28 +132,25 @@ public static class InventorySystem
         }
     }
 
-    //cycle to previous spot in inventory
-    public static void itemCycleDown()
+    public static void equipSword()
     {
-        //cycle down in inventory
-        if(curPos == 0)
-        {
-            curPos = inventorySize;
+        curItem = swordSlot;
+    }
 
-            curItem = inventory[inventorySize];
-        }
-        else
-        {
-            curPos--;
+    public static void equipUpgradedSword()
+    {
+        curItem = upgradedSwordSlot;
+    }
 
-            curItem = inventory[curPos];
-        }
+    public static void equipArmCannon()
+    {
+        curItem = armCannonSlot;
     }
 
     //for testing purposes only
     public static void displayInventory()
     {
-        for (int i = 0; i < inventorySize; i++)
+        for (int i = 0; i < inventoryMaxSize; i++)
         {
             Debug.Log(inventory[i].tag.ToString());
         }

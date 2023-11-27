@@ -13,6 +13,11 @@ TagManager:
   - CaveGround
   - CaveUnder
   - MemorizePuzzle
+  - Bomb
+  - Consumeable
+  - Sword
+  - ArmCannon
+  - UpgradedSword
   layers:
   - Default
   - TransparentFX

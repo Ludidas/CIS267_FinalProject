@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -65,6 +67,8 @@ public class PlayerManager : MonoBehaviour
     {
         updatePlayer();
         animatePlayer();
+
+        inventoryCommands();
     }
 
     #region Movement
@@ -255,7 +259,8 @@ public class PlayerManager : MonoBehaviour
         if (value.started)
         {
             GameObject curItem = InventorySystem.getCurItem();
-            //Lo' and behold, we need to check what the player is holding. Based on that we can do a variety of things.
+
+            Debug.Log(curItem.tag);
 
             //Right now I'm only going to work on the combat system. I am going to assume we're holding a sword and work
             //based on that.
@@ -267,6 +272,8 @@ public class PlayerManager : MonoBehaviour
     //Interacts with whatever the player is looking at
     public void onInteract(InputAction.CallbackContext value)
     {
+        Debug.Log("INTERACTED");
+
         if (value.started)
         {
             //Gets the gameobject stored in the InteractionZone object.
@@ -299,6 +306,55 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("Interaction Memorize Puzzle");
             inter.GetComponent<MemorizeGameBlocks>().interacted();
         }
+        //pick up bomb
+        if(inter.CompareTag("Bomb"))
+        {
+            //add bomb to inventory
+            InventorySystem.addItemToInv(inter);
+
+            //remove bomb from the floor
+            Destroy(inter);
+
+            Debug.Log("Pick Up Bomb");
+        }
+        //pick up consumeable
+        if(inter.CompareTag("Consumeable"))
+        {
+            //add consumeable to inventory
+            InventorySystem.addItemToInv(inter);
+
+            //remove consumeable from floor
+            Destroy(inter);
+
+            Debug.Log("Pick Up Consumeable");
+        }
+        //pick up sword
+        if(inter.CompareTag("Sword"))
+        {
+            InventorySystem.addItemToInv(inter);
+
+            //Destroy(inter);
+
+            Debug.Log("Pick Up Sword");
+        }
+        //pick up u sword
+        if(inter.CompareTag("Upgraded Sword"))
+        {
+            InventorySystem.addItemToInv(inter);
+
+            //Destroy(inter);
+
+            Debug.Log("Pick Up Upgraded Sword");
+        }
+        //pick up ac
+        if(inter.CompareTag("Arm Cannon"))
+        {
+            InventorySystem.addItemToInv(inter);
+
+            //Destroy(inter);
+
+            Debug.Log("Pick Up Arm Cannon");
+        }
     }
 
     #endregion
@@ -307,19 +363,72 @@ public class PlayerManager : MonoBehaviour
 
     private void checkItemType(GameObject curItem)
     {
-        //Just attacking because inventory is not set up yet
-        attackSword();
         //Make sure we're holding an item
         if (curItem == null)
         {
             return;
         }
         //If we are holding an item, check its tags
-        if (curItem.CompareTag("Weapon"))
+        if (curItem.CompareTag("Sword"))
         {
-            //Assuming it's a sword :shrug:
-            //Change this later lol
-            
+            attackSword();
+        }
+        else if(curItem.CompareTag("Consumeable"))
+        {
+            //consume item
+
+            InventorySystem.removeItem();
+        }
+        else if(curItem.CompareTag("Bomb"))
+        {
+            //use bomb
+
+            InventorySystem.removeItem();
+        }
+        else if(curItem.CompareTag("Upgraded Sword"))
+        {
+            //upgraded sword swing
+        }
+        else if(curItem.CompareTag("Arm Cannon"))
+        {
+            //arm cannon shoot
+        }
+    }
+
+    #endregion
+
+    #region Inventory Commands
+
+    private void inventoryCommands()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            //cycle inv
+            InventorySystem.itemCycle();
+        }
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            //equip sword
+
+            Debug.Log("Equipped Sword");
+
+            InventorySystem.equipSword();
+        }
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            //equip upgraded sword
+
+            Debug.Log("Equipped Upgraded Sword");
+
+            InventorySystem.equipUpgradedSword();
+        }
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            //equip arm cannon
+
+            Debug.Log("Equipped Arm Cannon");
+
+            InventorySystem.equipArmCannon();
         }
     }
 
