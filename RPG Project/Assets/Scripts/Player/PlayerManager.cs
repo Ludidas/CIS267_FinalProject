@@ -67,8 +67,6 @@ public class PlayerManager : MonoBehaviour
     {
         updatePlayer();
         animatePlayer();
-
-        inventoryCommands();
     }
 
     #region Movement
@@ -287,6 +285,12 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void onInventory(InputAction.CallbackContext value)
+    {
+        Vector2 inventory = value.ReadValue<Vector2>();
+        inventoryCommands(inventory);
+    }
+
     #endregion
 
     #region Interact Functions
@@ -399,14 +403,16 @@ public class PlayerManager : MonoBehaviour
 
     #region Inventory Commands
 
-    private void inventoryCommands()
+    private void inventoryCommands(Vector2 inventory)
     {
-        if(Input.GetKeyDown(KeyCode.R))
+
+        
+        if(inventory.y == -1)
         {
             //cycle inv
             InventorySystem.itemCycle();
         }
-        if(Input.GetKeyDown(KeyCode.F))
+        if(inventory.x == 1)
         {
             //equip sword
 
@@ -414,7 +420,7 @@ public class PlayerManager : MonoBehaviour
 
             InventorySystem.equipSword();
         }
-        if(Input.GetKeyDown(KeyCode.G))
+        if(inventory.y == 1)
         {
             //equip upgraded sword
 
@@ -422,7 +428,7 @@ public class PlayerManager : MonoBehaviour
 
             InventorySystem.equipUpgradedSword();
         }
-        if(Input.GetKeyDown(KeyCode.H))
+        if(inventory.x == -1)
         {
             //equip arm cannon
 

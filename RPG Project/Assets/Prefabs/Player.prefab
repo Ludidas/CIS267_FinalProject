@@ -801,6 +801,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8ef7c55d-0639-4429-896f-398291cbe818
     m_ActionName: Dialogue/ClickThrough
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6490979995542208485}
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+        m_MethodName: onInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1befc7ae-753f-4f99-b172-fcd49c6b57b9
+    m_ActionName: PlayerControls/Inventory[/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControls

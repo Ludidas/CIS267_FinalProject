@@ -18,7 +18,6 @@ public static class InventorySystem
     //Useable functions:
     //initializeInv() - creates inventory (call this in GameManager script or something)
     //addItemToInv(GameObject) - adds item to the inventory
-    //useItem() - this is where the code of of an item use will go (uses current item)
     //removeItem() - removes the current item in hand from inventory (DOES NOT DELETE THE ITEM IN HAND)
     //itemCycle() - switches to the next item in the inventory
     //displayInventory() - displays all the inventory items in the log (for testing)
@@ -29,7 +28,7 @@ public static class InventorySystem
     //===========================================================================================================
 
 
-    private static GameObject[] inventory;
+    private static GameObject[] inventory = new GameObject[1];
     private static GameObject swordSlot;
     private static GameObject upgradedSwordSlot;
     private static GameObject armCannonSlot;
@@ -71,13 +70,13 @@ public static class InventorySystem
 
             return;
         }
-        else if(item.CompareTag("Weapon"))
+        else if(item.CompareTag("Upgraded Sword"))
         {
             upgradedSwordSlot = item;
 
             return;
         }
-        else if(item.CompareTag("Weapon2"))
+        else if(item.CompareTag("Arm Cannon"))
         {
             armCannonSlot = item;
 
