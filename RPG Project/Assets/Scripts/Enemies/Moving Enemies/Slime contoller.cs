@@ -9,18 +9,19 @@ public class Slimecontoller : MonoBehaviour
     private Rigidbody2D rb;
     private float cooldown;
     private float cooldown2;
-    private float cooldown3;
     private float speed;
     private bool inranged;
+    private float attackcooldown;
     void Start()
     {
         cooldown = 2;
         cooldown2 = 2;
-        cooldown3 = 2;
-        speed = (float).05;
+        speed = (float).03;
         inranged = false;
         rb = GetComponent<Rigidbody2D>();
-       
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        attackcooldown = 2;
+
     }
 
     // Update is called once per frame
@@ -56,8 +57,7 @@ public class Slimecontoller : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (cooldown3 <= 0)
-        {
+        
 
 
             if (collision.gameObject.CompareTag("Player"))
@@ -65,28 +65,36 @@ public class Slimecontoller : MonoBehaviour
                 player = collision.gameObject.transform;
                 inranged = true;
             }
-        }
-        else
+        
+       
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
         {
-            cooldown3 -= Time.deltaTime;
+            if (attackcooldown <= 0)
+            {
+                Debug.Log("SlimeHit");
+                attackcooldown = 1;
+            }
+            else
+            {
+                attackcooldown -= Time.deltaTime;
+            }
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (cooldown3 <= 0)
-        {
-
-
+        
             if (collision.gameObject.CompareTag("Player"))
             {
                 player = collision.gameObject.transform;
                 inranged = true;
+            
             }
-        }
-        else
-        {
-            cooldown3 -= Time.deltaTime;
-        }
+           
+        
+     
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
