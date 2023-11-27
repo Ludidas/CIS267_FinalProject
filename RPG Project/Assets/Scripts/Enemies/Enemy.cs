@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float health;
-    [SerializeField] private string[] lootTable;
+    [SerializeField] private GameObject[] lootTable;
 
     public void takeDamage(float d)
     {
@@ -24,9 +24,13 @@ public class Enemy : MonoBehaviour
 
     public void onDeath()
     {
-        for (int i = 0; i < lootTable.Length; i++)
-        {
-            //Instantiate each item to be picked up
-        }
+        int LootIndex;
+        GameObject LootSpawned;
+       
+            LootIndex = Random.Range(0, lootTable.Length);
+            LootSpawned = Instantiate(lootTable[LootIndex].gameObject);
+            LootSpawned.transform.position = new Vector2(transform.position.x, transform.position.y);
+            Destroy(this.gameObject);
+        
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Slimecontoller : MonoBehaviour
 {
     private Transform player;
+    private Enemy health;
     private Rigidbody2D rb;
     private float cooldown;
     private float cooldown2;
@@ -19,8 +20,10 @@ public class Slimecontoller : MonoBehaviour
         speed = (float).03;
         inranged = false;
         rb = GetComponent<Rigidbody2D>();
+        health = GetComponent<Enemy>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         attackcooldown = 2;
+        health.setHealth(2);
 
     }
 
@@ -39,6 +42,8 @@ public class Slimecontoller : MonoBehaviour
         {
             cooldown -= Time.deltaTime;
         }
+        health.getHealth();
+        
     }
     private void move()
     {
@@ -60,13 +65,20 @@ public class Slimecontoller : MonoBehaviour
         
 
 
-            if (collision.gameObject.CompareTag("Player"))
-            {
+         if (collision.gameObject.CompareTag("Player"))
+         {
                 player = collision.gameObject.transform;
                 inranged = true;
-            }
-        
-       
+         }
+         if (collision.gameObject.CompareTag("Sword"))
+         {
+         if (health.getHealth() <= 0)
+         {
+                health.onDeath();
+         }
+         }
+
+
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -82,16 +94,17 @@ public class Slimecontoller : MonoBehaviour
                 attackcooldown -= Time.deltaTime;
             }
         }
+        
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         
-            if (collision.gameObject.CompareTag("Player"))
-            {
+        if (collision.gameObject.CompareTag("Player"))
+        {
                 player = collision.gameObject.transform;
                 inranged = true;
             
-            }
+        }
            
         
      

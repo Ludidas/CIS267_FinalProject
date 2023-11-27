@@ -34,6 +34,10 @@ public class Icefire : MonoBehaviour
             player = collision.gameObject.transform;
             inrange = true;
         }
+        if(collision.gameObject.CompareTag("Sword"))
+        {
+            Destroy(this.gameObject);
+        }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {

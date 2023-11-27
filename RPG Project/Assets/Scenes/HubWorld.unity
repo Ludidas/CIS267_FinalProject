@@ -42573,6 +42573,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7225276589557256012, guid: 4617164e9653202429b192bda113b25b, type: 3}
+      propertyPath: m_TagString
+      value: Sword
+      objectReference: {fileID: 0}
     - target: {fileID: 8360245182202318310, guid: 4617164e9653202429b192bda113b25b, type: 3}
       propertyPath: m_Name
       value: Player

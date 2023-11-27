@@ -7,8 +7,7 @@ public class Prowler : MonoBehaviour
 {
     private Transform Player;
     private Rigidbody2D rb;
-    private float jump;
-    private float attack;
+    private Enemy health;
     private bool inranged;
     private float speed;
     private float cooldown;
@@ -23,6 +22,8 @@ public class Prowler : MonoBehaviour
         cooldown = 6;
         jumpcooldown = 1;
         attackcooldown = 1;
+        health = GetComponent<Enemy>();
+        health.setHealth(3);
     }
 
     // Update is called once per frame
@@ -46,6 +47,7 @@ public class Prowler : MonoBehaviour
                 cooldown = 2;
             }
         }
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -54,6 +56,13 @@ public class Prowler : MonoBehaviour
 
             Player = collision.gameObject.transform;
             inranged = true;
+        }
+        if(collision.gameObject.CompareTag("Sword"))
+        {
+            if(health.getHealth() <= 0) 
+            {
+                health.onDeath();
+            }
         }
         
     }
@@ -71,6 +80,7 @@ public class Prowler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         { 
+            
             if (attackcooldown <= 0)
             {
                 Debug.Log("ProwlerHit");
