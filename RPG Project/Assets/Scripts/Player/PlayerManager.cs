@@ -42,6 +42,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject dialogueManager;
     [SerializeField] private GameObject inputManagerGO;
     [SerializeField] private GameObject weaponsManager;
+    [SerializeField] private GameObject menuManager;
 
     private InputManager inputManager;
     private Animator playerAnimator;
@@ -291,6 +292,14 @@ public class PlayerManager : MonoBehaviour
         inventoryCommands(inventory);
     }
 
+    public void onPause(InputAction.CallbackContext value)
+    {
+        if (value.started) 
+        {
+            menuManager.GetComponent<MenuManager>().pauseGame();
+        }
+    }
+
     #endregion
 
     #region Interact Functions
@@ -342,7 +351,7 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("Pick Up Sword");
         }
         //pick up u sword
-        if(inter.CompareTag("Upgraded Sword"))
+        if(inter.CompareTag("UpgradedSword"))
         {
             InventorySystem.addItemToInv(inter);
 
@@ -351,7 +360,7 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("Pick Up Upgraded Sword");
         }
         //pick up ac
-        if(inter.CompareTag("Arm Cannon"))
+        if(inter.CompareTag("ArmCannon"))
         {
             InventorySystem.addItemToInv(inter);
 

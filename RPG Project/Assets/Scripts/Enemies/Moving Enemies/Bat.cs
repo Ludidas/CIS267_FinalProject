@@ -5,17 +5,21 @@ using UnityEngine;
 
 //=======================================
 // The bat enemy will fly in random directions 
-// it will only exist 
+// You choose the area it will fly in by the x&y PatrolRange and their offsets
+// The doDamage() function only prints to console currently.
+// if the player is inside the bats trigger it will seek out the player every other time it flies
+
+// I would recommend using this trigger to get an idea of where the bat will fly when setting PatrolRanges and Offsets
 //=======================================
 
 public class Bat : MonoBehaviour{
 
     [SerializeField] private float xPatrolRange;
     [SerializeField] private float yPatrolRange;
+    [SerializeField] private float xOffset;
+    [SerializeField] private float yOffset;
     [SerializeField] private float minTimeBeforeTurn;
     [SerializeField] private float speed;
-    [SerializeField] private float health;
-    [SerializeField] private float damage;
 
     private float xMax;
     private float yMax;
@@ -39,8 +43,8 @@ public class Bat : MonoBehaviour{
         // batHome will be the location it goes tword when it exits its area
         batHome = batPos;
 
-        xMax = batHome.x + (xPatrolRange / 2f);
-        yMax = batHome.y + (yPatrolRange / 2f);
+        xMax = batHome.x + (xPatrolRange / 2f) + xOffset;
+        yMax = batHome.y + (yPatrolRange / 2f) + yOffset;
         xMin = batHome.x - (xPatrolRange / 2f);
         yMin = batHome.y - (yPatrolRange / 2f);
 
@@ -135,10 +139,6 @@ public class Bat : MonoBehaviour{
         return 0;
     }
 
-    private void doDamage() {
-        Debug.Log("The player takes some damage");
-    }
-
     #region Collision
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
@@ -156,7 +156,7 @@ public class Bat : MonoBehaviour{
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
-            doDamage();
+            // do something
         }
     }
     #endregion
