@@ -178,7 +178,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1838298197499904016, guid: e0a4ff6e879afed4d8fa1cbf3d0a5fdb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1824959179}
   m_SourcePrefab: {fileID: 100100000, guid: e0a4ff6e879afed4d8fa1cbf3d0a5fdb, type: 3}
 --- !u!1001 &134298184
 PrefabInstance:
@@ -4808,6 +4811,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6866644563927400156, guid: a9879bbbd53bafa498599640fcc908d9, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e7001ba80c2a60a4da0edc489d7dfc77, type: 2}
     - target: {fileID: 8289475547132312686, guid: a9879bbbd53bafa498599640fcc908d9, type: 3}
       propertyPath: m_Name
       value: Slime
@@ -62215,6 +62222,32 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1824959172 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1838298197499904016, guid: e0a4ff6e879afed4d8fa1cbf3d0a5fdb, type: 3}
+  m_PrefabInstance: {fileID: 45911218}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1824959179
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824959172}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f1ab4db5ae12ed4191bb18454fe86da, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1877929427
 GameObject:
   m_ObjectHideFlags: 0
