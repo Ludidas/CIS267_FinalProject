@@ -254,7 +254,6 @@ public class PlayerManager : MonoBehaviour
     
     public void onUse(InputAction.CallbackContext value)
     {
-        Debug.Log("USED");
         if (value.started)
         {
             GameObject curItem = InventorySystem.getCurItem();
@@ -271,8 +270,6 @@ public class PlayerManager : MonoBehaviour
     //Interacts with whatever the player is looking at
     public void onInteract(InputAction.CallbackContext value)
     {
-        Debug.Log("INTERACTED");
-
         if (value.started)
         {
             //Gets the gameobject stored in the InteractionZone object.
