@@ -16,7 +16,6 @@ public static class InventorySystem
     //is ever a need to add/remove an item from the player's inventory
     //
     //Useable functions:
-    //initializeInv() - creates inventory (call this in GameManager script or something)
     //addItemToInv(GameObject) - adds item to the inventory
     //removeItem() - removes the current item in hand from inventory (DOES NOT DELETE THE ITEM IN HAND)
     //itemCycle() - switches to the next item in the inventory
@@ -28,11 +27,11 @@ public static class InventorySystem
     //===========================================================================================================
 
 
-    private static GameObject[] inventory = new GameObject[1];
-    private static GameObject swordSlot;
-    private static GameObject upgradedSwordSlot;
-    private static GameObject armCannonSlot;
-    private static GameObject curItem;
+    private static string[] inventory = new string[1];
+    private static string swordSlot;
+    private static string upgradedSwordSlot;
+    private static string armCannonSlot;
+    private static string curItem;
     private static int curPos;
     public static int inventoryMaxSize;
     
@@ -47,38 +46,25 @@ public static class InventorySystem
     }
     //========================================
 
-    
-    //creates inventory    
-    public static void initializeInv()
-    {
-        inventory = new GameObject[inventoryMaxSize];
-
-        curPos = 0;
-
-        curItem = inventory[curPos];
-
-        //displayInventory();
-    }
-
     //puts item into the player's inventory
-    public static void addItemToInv(GameObject item)
+    public static void addItemToInv(string itemName)
     {
         //if the item is a sword or other weapon, then it gets its own slot
-        if(item.CompareTag("Sword"))
+        if(itemName == "Sword")
         {
-            swordSlot = item;
+            swordSlot = itemName;
 
             return;
         }
-        else if(item.CompareTag("Upgraded Sword"))
+        else if(itemName == "Upgraded Sword")
         {
-            upgradedSwordSlot = item;
+            upgradedSwordSlot = itemName;
 
             return;
         }
-        else if(item.CompareTag("Arm Cannon"))
+        else if(itemName == "Arm Cannon")
         {
-            armCannonSlot = item;
+            armCannonSlot = itemName;
 
             return;
         }
@@ -99,7 +85,7 @@ public static class InventorySystem
         }
            
         //the empty spot in the inventory will now be the item
-        inventory[curPos] = item;
+        inventory[curPos] = itemName;
 
         //set curItem to the new item in inventory
         curItem = inventory[curPos];
@@ -151,12 +137,12 @@ public static class InventorySystem
     {
         for (int i = 0; i < inventoryMaxSize; i++)
         {
-            Debug.Log(inventory[i].tag.ToString());
+            Debug.Log(inventory[i]);
         }
     }
     
     //get the current item in hand
-    public static GameObject getCurItem()
+    public static string getCurItem()
     {
         return curItem;
     }

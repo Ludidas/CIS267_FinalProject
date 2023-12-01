@@ -256,9 +256,9 @@ public class PlayerManager : MonoBehaviour
     {
         if (value.started)
         {
-            GameObject curItem = InventorySystem.getCurItem();
+            String curItem = InventorySystem.getCurItem();
 
-            Debug.Log(curItem.tag);
+            Debug.Log(curItem);
 
             //Right now I'm only going to work on the combat system. I am going to assume we're holding a sword and work
             //based on that.
@@ -320,7 +320,7 @@ public class PlayerManager : MonoBehaviour
         if(inter.CompareTag("Bomb"))
         {
             //add bomb to inventory
-            InventorySystem.addItemToInv(inter);
+            InventorySystem.addItemToInv(inter.tag);
 
             //remove bomb from the floor
             Destroy(inter);
@@ -331,7 +331,7 @@ public class PlayerManager : MonoBehaviour
         if(inter.CompareTag("Consumeable"))
         {
             //add consumeable to inventory
-            InventorySystem.addItemToInv(inter);
+            InventorySystem.addItemToInv(inter.tag);
 
             //remove consumeable from floor
             Destroy(inter);
@@ -341,7 +341,7 @@ public class PlayerManager : MonoBehaviour
         //pick up sword
         if(inter.CompareTag("Sword"))
         {
-            InventorySystem.addItemToInv(inter);
+            InventorySystem.addItemToInv(inter.tag);
 
             //Destroy(inter);
 
@@ -350,7 +350,7 @@ public class PlayerManager : MonoBehaviour
         //pick up u sword
         if(inter.CompareTag("UpgradedSword"))
         {
-            InventorySystem.addItemToInv(inter);
+            InventorySystem.addItemToInv(inter.tag);
 
             //Destroy(inter);
 
@@ -359,7 +359,7 @@ public class PlayerManager : MonoBehaviour
         //pick up ac
         if(inter.CompareTag("ArmCannon"))
         {
-            InventorySystem.addItemToInv(inter);
+            InventorySystem.addItemToInv(inter.tag);
 
             //Destroy(inter);
 
@@ -371,7 +371,7 @@ public class PlayerManager : MonoBehaviour
 
     #region Using Items
 
-    private void checkItemType(GameObject curItem)
+    private void checkItemType(string curItem)
     {
         //Make sure we're holding an item
         if (curItem == null)
@@ -379,27 +379,27 @@ public class PlayerManager : MonoBehaviour
             return;
         }
         //If we are holding an item, check its tags
-        if (curItem.CompareTag("Sword"))
+        if (curItem == "Sword")
         {
             attackSword();
         }
-        else if(curItem.CompareTag("Consumeable"))
+        else if(curItem == "Consumeable")
         {
             //consume item
 
             InventorySystem.removeItem();
         }
-        else if(curItem.CompareTag("Bomb"))
+        else if(curItem == "Bomb")
         {
             //use bomb
 
             InventorySystem.removeItem();
         }
-        else if(curItem.CompareTag("Upgraded Sword"))
+        else if(curItem == "Upgraded Sword")
         {
             //upgraded sword swing
         }
-        else if(curItem.CompareTag("Arm Cannon"))
+        else if(curItem == "Arm Cannon")
         {
             //arm cannon shoot
         }
