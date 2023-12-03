@@ -1,16 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class MenuManager : MonoBehaviour{
+public class MenuManager : MonoBehaviour {
     [SerializeField] private GameObject inputManagerGO;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject creditsMenu;
+    [SerializeField] private GameObject controlsDisplay;
+    [SerializeField] private GameObject eventSystem;
 
-    private InputManager inputManager;
+    [Header("MenuButtons")]
+    [SerializeField] private GameObject btnFirstMenu;
+    [SerializeField] private GameObject btnControlsMenu;
+    [SerializeField] private GameObject btnCreditsMenu;
 
-    public void Awake() {
-        inputManager = inputManagerGO.GetComponent<InputManager>();
+    private void Awake() {
+        
     }
 
     public void resumeGame() {
@@ -20,8 +27,8 @@ public class MenuManager : MonoBehaviour{
         // Disable Pause Menu
         pauseMenu.SetActive(false);
 
-        // Swap Player Controls
-        inputManager.swapMap("PlayerControls");
+        // Swap Controls
+        inputManagerGO.GetComponent<InputManager>().swapMap("PlayerControls");
     }
 
     public void pauseGame() {
@@ -32,16 +39,55 @@ public class MenuManager : MonoBehaviour{
         pauseMenu.SetActive(true);
 
         // Swap Player Controls
-        inputManager.swapMap("Menu");
+        inputManagerGO.GetComponent<InputManager>().swapMap("Menu");
     }
 
     public void showControls() {
-        // I still need to make this part
+
+        pauseMenu.SetActive(false);
+
+        eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(btnControlsMenu);
+
+        controlsDisplay.SetActive(true);
+    }
+
+    public void hideControls() {
+        pauseMenu.SetActive(true);
+
+        eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(btnFirstMenu);
+
+        controlsDisplay.SetActive(false);
     }
 
     public void loadTitleScreen() {
-        // Currently fails because of our load order
+        //VERY IMPORTANT FOR IF PLAYER TRIES TO START A NEW GAME
+        Time.timeScale = 1.0f;
+        inputManagerGO.GetComponent<InputManager>().swapMap("PlayerControls");
+
         SceneManager.LoadScene("TitleScreen");
+    }
+
+    public void startNewGame() {
+        // Clear inventory and anything else that is static
+
+        // Probably other stuff to do in here
+
+        SceneManager.LoadScene("HubWorld");
+    }
+
+    public void showCredits() {
+        pauseMenu.SetActive(false);
+
+        eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(btnCreditsMenu);
+
+        creditsMenu.SetActive(true);
+    }
+    public void hideCredits() {
+        pauseMenu.SetActive(true);
+
+        eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(btnFirstMenu);
+
+        creditsMenu.SetActive(false);
     }
 
     public void exitGame() {

@@ -45,8 +45,8 @@ public class Bat : MonoBehaviour{
 
         xMax = batHome.x + (xPatrolRange / 2f) + xOffset;
         yMax = batHome.y + (yPatrolRange / 2f) + yOffset;
-        xMin = batHome.x - (xPatrolRange / 2f);
-        yMin = batHome.y - (yPatrolRange / 2f);
+        xMin = batHome.x - (xPatrolRange / 2f) + xOffset;
+        yMin = batHome.y - (yPatrolRange / 2f) + yOffset;
 
         playerPresent = false;
         time = 0;
