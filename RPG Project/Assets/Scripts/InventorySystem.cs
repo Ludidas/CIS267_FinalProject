@@ -20,31 +20,25 @@ public static class InventorySystem
     //removeItem() - removes the current item in hand from inventory (DOES NOT DELETE THE ITEM IN HAND)
     //itemCycle() - switches to the next item in the inventory
     //displayInventory() - displays all the inventory items in the log (for testing)
-    //getCurItem() - returns the current Item (useful when instatiating)
+    //getCurItem() - returns the current Item
     //
     //
     //pls msg me if there is any sort of problem with this script or if you suggest changes.
     //===========================================================================================================
 
 
-    private static string[] inventory = new string[2];
+    //This is the inventory size plus the empty slot for the hand
+    //==============================================
+    private static int inventoryMaxSize = 2;
+    //==============================================
+
+    private static string[] inventory = new string[inventoryMaxSize];
     private static string swordSlot;
     private static string upgradedSwordSlot;
     private static string armCannonSlot;
     private static string curItem;
-    private static int curPos;
-    public static int inventoryMaxSize;
+    private static int curPos = 0;
     
-
-    //========================================
-    //PLEASE SET THIS
-
-    //size of the inventory
-    public static void setInventoryMaxSize(int s)
-    {
-        inventoryMaxSize = s;
-    }
-    //========================================
 
     //puts item into the player's inventory
     public static void addItemToInv(string itemName)
@@ -54,17 +48,23 @@ public static class InventorySystem
         {
             swordSlot = itemName;
 
+            curPos = 10;
+
             return;
         }
         else if(itemName == "Upgraded Sword")
         {
             upgradedSwordSlot = itemName;
 
+            curPos = 11;
+
             return;
         }
-        else if(itemName == "Arm Cannon")
+        else if(itemName == "ArmCannon")
         {
             armCannonSlot = itemName;
+
+            curPos = 12;
 
             return;
         }
@@ -81,39 +81,53 @@ public static class InventorySystem
         //inventory is full
         if(curPos == inventoryMaxSize && inventory[curPos] != null)
         {
+            Debug.Log("Full Inventory");
+
             return;
         }
-           
+        
+        Debug.Log(itemName + " stored in slot " + curPos);
+
         //the empty spot in the inventory will now be the item
         inventory[curPos] = itemName;
 
         //set curItem to the new item in inventory
         curItem = inventory[curPos];
 
-        //displayInventory();
+        displayInventory();
     }
 
     //sets current item in inventory to empty
     public static void removeItem()
     {
+        curItem = null;
+
         inventory[curPos] = null;
     }
 
     //cycle to next spot in inventory
     public static void itemCycle()
     {
+        //Debug.Log("CurPos before item cycle " + curPos);
+
         //cycle up in inventory
-        if(curPos == inventoryMaxSize)
+        if(curPos >= (inventoryMaxSize - 1))
         {
             curPos = 0;
 
             curItem = inventory[0];
+
+            Debug.Log("CurPos (0 is first slot): " + curPos);
+            Debug.Log("Cycled to: " + curItem);
         }
         else
         {
             curPos++;
 
             curItem = inventory[curPos];
+
+            Debug.Log("CurPos (0 is first slot): " + curPos);
+            Debug.Log("Cycled to: " + curItem);
         }
     }
 
