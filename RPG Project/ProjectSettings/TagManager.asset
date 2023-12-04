@@ -18,6 +18,7 @@ TagManager:
   - Sword
   - ArmCannon
   - UpgradedSword
+  - CaveButton
   layers:
   - Default
   - TransparentFX

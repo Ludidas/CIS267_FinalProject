@@ -313,8 +313,12 @@ public class PlayerManager : MonoBehaviour
         if (inter.CompareTag("MemorizePuzzle"))
         {
             //This is for the Memorize Puzzle in the DungeonCave scene.
-            Debug.Log("Interaction Memorize Puzzle");
             inter.GetComponent<MemorizeGameBlocks>().interacted();
+        }
+        if (inter.CompareTag("CaveButton"))
+        {
+            //This is for the buttons in the DungeonCave scene.
+            inter.GetComponent<Button>().onClick();
         }
         //pick up bomb
         if(inter.CompareTag("Bomb"))

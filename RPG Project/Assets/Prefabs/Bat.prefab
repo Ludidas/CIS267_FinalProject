@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 4878805753863512063}
   - component: {fileID: 5963943063483448546}
   - component: {fileID: 4457080339338530020}
+  - component: {fileID: -7509924996132364942}
   m_Layer: 0
   m_Name: Bat
   m_TagString: Untagged
@@ -220,10 +221,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xPatrolRange: 14
   yPatrolRange: 14
+  xOffset: 0
+  yOffset: 0
   minTimeBeforeTurn: 2
   speed: 3.5
-  health: 4
-  damage: 3
 --- !u!95 &4878805753863512063
 Animator:
   serializedVersion: 5
@@ -335,6 +336,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8, y: 6}
   m_EdgeRadius: 0
+--- !u!114 &-7509924996132364942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2737438069416410414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 745b6eaf778f81f44956d658b3b65965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  lootTable: []
 --- !u!1 &4798507305773814203
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,6 +46,10 @@ public class MemorizeGame : MonoBehaviour
             {
                 anim.SetInteger("CurProgress", orderOfPuzzle[0]);
             }
+            else if (timer > -1)
+            {
+                anim.SetInteger("CurProgress", 0);
+            }
         }
     }
 
@@ -93,11 +97,11 @@ public class MemorizeGame : MonoBehaviour
                 //Move to the next step
                 step++;
                 //Set the timer to the step
-                timer = 0;
+                timer = -1;
             }
         }
         //If the game has started
-        else if (gameStarted == 1)
+        else if (gameStarted == 1 && timer > step)
         {
             //If the clicked block is the correct piece in the round
             if (n == orderOfPuzzle[stepInCurrentRound])
@@ -117,10 +121,11 @@ public class MemorizeGame : MonoBehaviour
                         Debug.Log("PLAYER WIN");
                         gameStarted = -1;
                         anim.SetInteger("CurProgress", 5);
+                        GetComponentInParent<DungeonCavePuzzleManager>().openMemoryGate();
                     }
                     else
                     {
-                        //Set the timer to the step
+                        //Set the timer to 0
                         timer = 0;
                     }
                 }
@@ -139,7 +144,7 @@ public class MemorizeGame : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //If the collider hits the player
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && gameStarted != -1)
         {
             //Generate the puzzle and start waiting for the player
             generatePuzzle();

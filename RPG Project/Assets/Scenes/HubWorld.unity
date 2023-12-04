@@ -42517,18 +42517,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3110959464902588384, guid: 4617164e9653202429b192bda113b25b, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3110959464902588384, guid: 4617164e9653202429b192bda113b25b, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
-      value: 1befc7ae-753f-4f99-b172-fcd49c6b57b9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3110959464902588384, guid: 4617164e9653202429b192bda113b25b, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
-      value: PlayerControls/Inventory[/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]
-      objectReference: {fileID: 0}
     - target: {fileID: 6490979995542208485, guid: 4617164e9653202429b192bda113b25b, type: 3}
       propertyPath: camera
       value: 

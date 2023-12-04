@@ -13,9 +13,12 @@ public class Prowler : MonoBehaviour
     private float cooldown;
     private float jumpcooldown;
     private float attackcooldown;
+
+    private Animator prowlerAnimator;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        prowlerAnimator = GetComponent<Animator>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         inranged = false;
         speed = (float).07;
@@ -31,6 +34,7 @@ public class Prowler : MonoBehaviour
     {
         if (inranged && cooldown > 0)
         {
+            prowlerAnimator.SetBool("isWalking", true);
             rb.MovePosition(Vector2.MoveTowards(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(Player.gameObject.transform.position.x, Player.gameObject.transform.position.y), speed));
             cooldown -= Time.deltaTime;
             if (cooldown <= 0)
