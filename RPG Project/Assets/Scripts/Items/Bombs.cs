@@ -12,7 +12,7 @@ public class Bombs : MonoBehaviour
     private float cooldown;
     void Start()
     {
-        isavtive = true;
+        isavtive = false;
         timer = 3;
         explosiontimer = 1;
         circleCollider = GetComponent<CircleCollider2D>();
