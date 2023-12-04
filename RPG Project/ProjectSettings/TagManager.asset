@@ -19,6 +19,7 @@ TagManager:
   - ArmCannon
   - UpgradedSword
   - CaveButton
+  - Enemy
   layers:
   - Default
   - TransparentFX

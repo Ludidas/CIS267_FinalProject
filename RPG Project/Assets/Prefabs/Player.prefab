@@ -258,6 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputManagerGO: {fileID: 8880575648369933489}
   pauseMenu: {fileID: 8725898742664696884}
+  creditsMenu: {fileID: 0}
   controlsDisplay: {fileID: 63067394112269748}
   eventSystem: {fileID: 7661697724507874781}
   btnFirstMenu: {fileID: 5904522794790163527}
@@ -2706,7 +2707,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listOfMaps:
   - PlayerControls
-  - OnIce
   - Dialogue
   - Menu
 --- !u!1001 &7465449394124085546
