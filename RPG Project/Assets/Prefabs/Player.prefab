@@ -2357,6 +2357,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d623d82c512bc7d448d05c6c2a97554d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  b: {fileID: 7923113822961562748, guid: bced0577f3d76b9489efe00280fc80da, type: 3}
+  h: {fileID: 6639537388547110766, guid: 933882fb6d103914e844a56072a1a8db, type: 3}
   speed: 3
   deadZone: 0.3
   fallingLength: 1

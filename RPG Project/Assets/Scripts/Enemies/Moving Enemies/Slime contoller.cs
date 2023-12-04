@@ -92,6 +92,8 @@ public class Slimecontoller : MonoBehaviour
             if (attackCooldown <= 0)
             {
                 Debug.Log("SlimeHit");
+                GameManager.changeHealth(-1);
+                Debug.Log(GameManager.getHealth());
                 attackCooldown = 1;
             }
             else

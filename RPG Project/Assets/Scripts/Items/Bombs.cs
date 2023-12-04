@@ -12,11 +12,11 @@ public class Bombs : MonoBehaviour
     private float cooldown;
     void Start()
     {
-        isavtive = false;
         timer = 3;
         explosiontimer = 1;
         circleCollider = GetComponent<CircleCollider2D>();
         cooldown = 0;
+        gameObject.tag = "Bomb";
     }
 
     // Update is called once per frame
@@ -36,9 +36,10 @@ public class Bombs : MonoBehaviour
             if (timer <= 0)
             {
                 gameObject.GetComponent<CircleCollider2D>().enabled = true;
+                gameObject.tag = "Untagged";
                 if(explosiontimer <= 0)
                 {
-                   
+                    isavtive = false;
                     Destroy(this.gameObject);
 
                 }

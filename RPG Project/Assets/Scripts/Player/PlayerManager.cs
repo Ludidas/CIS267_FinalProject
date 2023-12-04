@@ -32,6 +32,10 @@ public class PlayerManager : MonoBehaviour
     private float isFalling;
     private bool touchingCaveUnder;
 
+    //this is for the player script to place the items into the world. 
+    public GameObject b;
+    public GameObject h;
+
     [Header("Attributes")]
     [SerializeField] private float speed;
     [SerializeField] private float deadZone;
@@ -62,6 +66,7 @@ public class PlayerManager : MonoBehaviour
         cameraLock = false;
 
         isFalling = -1f;
+
     }
 
     //Keep this organized. Update() should contain as few functions as possible, and it should be obvious what the functions do.
@@ -410,13 +415,15 @@ public class PlayerManager : MonoBehaviour
         else if(curItem == "Consumeable")
         {
             //consume item
-
+            Healthpot.Active(true);
+            Instantiate(h, transform.position, transform.rotation);
             InventorySystem.removeItem();
         }
         else if(curItem == "Bomb")
         {
             //use bomb
-
+            Bombs.setavtive(true);
+            Instantiate(b, transform.position, transform.rotation);
             InventorySystem.removeItem();
         }
         else if(curItem == "Upgraded Sword")
