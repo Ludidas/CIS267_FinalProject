@@ -35,15 +35,16 @@ public class KeyController : MonoBehaviour{
 
         firstMessage.sentences = new string[] {
             "Half of a key really doesn't do me any good.",
-            "I should see if I can find another piece of it." 
+            "I should look for the other half of it." 
         };
 
+        // not used rn
         secondMessage.sentences = new string[] {
             "Another part of a key!"
         };
 
         thirdMessage.sentences = new string[] {
-            "The key vanishes from your hand as when you try and attach both parts",
+            "The key vanishes from your hand as you go to put them together",
             "You get an unsettling feeling that the path forward is no longer blocked"
         };
 

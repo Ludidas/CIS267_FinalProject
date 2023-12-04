@@ -285,8 +285,12 @@ public class PlayerManager : MonoBehaviour
 
     public void onInventory(InputAction.CallbackContext value)
     {
-        Vector2 inventory = value.ReadValue<Vector2>();
-        inventoryCommands(inventory);
+        if (value.started) 
+        {
+            Vector2 inventory = value.ReadValue<Vector2>();
+
+            inventoryCommands(inventory);
+        }
     }
 
     public void onPause(InputAction.CallbackContext value)
@@ -373,10 +377,16 @@ public class PlayerManager : MonoBehaviour
         {
             // Not stored in inventory
             // used in dungeon 3
+            // A little messy because i'm using it for 2 things
 
-            Destroy(inter);
+            if (inter.GetComponent<SkyrimPuzzle>() == null) {
+                // used for the keys you pickup in my level
+                Destroy(inter);
+                Debug.Log("You picked up a key half");
+                return;
+            }
 
-            Debug.Log("You picked up a key half");
+            inter.GetComponent<SkyrimPuzzle>().advanceState();
         }
     }
 
