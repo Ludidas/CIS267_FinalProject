@@ -27,10 +27,10 @@ public class Enemy : MonoBehaviour
         int LootIndex;
         GameObject LootSpawned;
        
-            LootIndex = Random.Range(0, lootTable.Length);
-            LootSpawned = Instantiate(lootTable[LootIndex].gameObject);
-            LootSpawned.transform.position = new Vector2(transform.position.x, transform.position.y);
-            Destroy(this.gameObject);
+        LootIndex = Random.Range(0, lootTable.Length);
+        LootSpawned = Instantiate(lootTable[LootIndex].gameObject);
+        LootSpawned.transform.position = new Vector2(transform.position.x, transform.position.y);
+        Destroy(this.gameObject);
         
     }
 }
