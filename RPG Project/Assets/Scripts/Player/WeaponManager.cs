@@ -17,7 +17,7 @@ public class WeaponManager : MonoBehaviour
 
     private void Start()
     {
-
+        damage = 1f;
     }
 
     private void Update()
@@ -36,6 +36,11 @@ public class WeaponManager : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             collision.GetComponent<Enemy>().takeDamage(damage);
+            if(collision.GetComponent<Enemy>().getHealth() <= 0)
+            {
+                collision.GetComponent <Enemy>().onDeath();
+            }
         }
+        
     }
 }

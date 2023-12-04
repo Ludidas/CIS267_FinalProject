@@ -43,7 +43,6 @@ public class Slimecontoller : MonoBehaviour
             cooldown -= Time.deltaTime;
         }
         
-        
     }
     private void move()
     {
@@ -85,14 +84,15 @@ public class Slimecontoller : MonoBehaviour
                 player = collision.gameObject.transform;
                 inranged = true;
          }
-         if (collision.gameObject.CompareTag("Sword"))
-         {
+        if (collision.gameObject.CompareTag("Sword"))
+        {
             health.takeDamage(1);
-         if (health.getHealth() <= 0)
-         {
+            if (health.getHealth() <= 0)
+            {
                 health.onDeath();
-         }
-         }
+            }
+        }
+
 
 
     }
