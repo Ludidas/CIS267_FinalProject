@@ -42,22 +42,37 @@ public class Slimecontoller : MonoBehaviour
         {
             cooldown -= Time.deltaTime;
         }
-        health.getHealth();
+        
         
     }
     private void move()
     {
         if (inranged)
         {
+            rb.constraints = RigidbodyConstraints2D.None;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             rb.MovePosition(Vector2.MoveTowards(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(player.gameObject.transform.position.x, player.gameObject.transform.position.y), speed));
             cooldown2 -= Time.deltaTime;
             if(cooldown2 <= 0)
             {
                 cooldown = 2;
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+               
             }
         }
 
         
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bomb"))
+        {
+            health.takeDamage(5);
+            if (health.getHealth() <= 0)
+            {
+                health.onDeath();
+            }
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -72,6 +87,7 @@ public class Slimecontoller : MonoBehaviour
          }
          if (collision.gameObject.CompareTag("Sword"))
          {
+            health.takeDamage(1);
          if (health.getHealth() <= 0)
          {
                 health.onDeath();

@@ -8,6 +8,8 @@ public class Icefire : MonoBehaviour
     private float x;
     private float y;
     public Transform player;
+    public GameObject ib;
+    private Iceblock block;
     private Rigidbody2D rb;
     public float move;
     private bool inrange;
@@ -16,6 +18,8 @@ public class Icefire : MonoBehaviour
     {
         move = (float).1;
         rb = GetComponent<Rigidbody2D>();
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        block = ib.gameObject.AddComponent<Iceblock>();
         inrange = false;
     }
 
@@ -36,6 +40,7 @@ public class Icefire : MonoBehaviour
         }
         if(collision.gameObject.CompareTag("Sword"))
         {
+            Instantiate(block, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }
     }
@@ -50,6 +55,12 @@ public class Icefire : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
+        {
+            GameManager.changeHealth(-1);
+            Debug.Log(GameManager.getHealth());
+            Destroy(this.gameObject);
+        }
+        if(collision.gameObject.CompareTag("Wall"))
         {
             Destroy(this.gameObject);
         }

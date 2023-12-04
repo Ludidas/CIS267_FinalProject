@@ -213,8 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 2
   lootTable:
-  - {fileID: 4967862994031423368, guid: cf725e98c1fa72e4096d9dce52d96249, type: 3}
-  - {fileID: 2808153264267151848, guid: 10bc500a1037b754fa3000a4711c3813, type: 3}
+  - {fileID: 7923113822961562748, guid: bced0577f3d76b9489efe00280fc80da, type: 3}
 --- !u!95 &6866644563927400156
 Animator:
   serializedVersion: 5

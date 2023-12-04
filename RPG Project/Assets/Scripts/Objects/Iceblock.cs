@@ -13,18 +13,28 @@ using UnityEngine;
 public class Iceblock : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private bool destroy;
     
     // Start is called before the first frame update
     void Start()
     {
         rb= GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        destroy = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         straightenMovement();
+        DestroyBlock();
+    }
+    private void DestroyBlock()
+    {
+        if(destroy)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void straightenMovement()
@@ -53,6 +63,17 @@ public class Iceblock : MonoBehaviour
             }
         }
     }
-  
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("icewall"))
+        {
+            destroy = false;
+        }
+        else if(collision.gameObject.CompareTag("Wall"))
+        {
+            destroy = true;
+        }
+    }
+
 }
 

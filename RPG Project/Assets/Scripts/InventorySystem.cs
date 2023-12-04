@@ -27,7 +27,7 @@ public static class InventorySystem
     //===========================================================================================================
 
 
-    private static string[] inventory = new string[1];
+    private static string[] inventory = new string[2];
     private static string swordSlot;
     private static string upgradedSwordSlot;
     private static string armCannonSlot;

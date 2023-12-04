@@ -47,6 +47,7 @@ public class IcefirePillers : MonoBehaviour
         {
             inrange = true;
         }
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)
