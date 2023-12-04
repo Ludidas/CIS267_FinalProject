@@ -219,8 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dece2126c9674a54d8992838b25c5f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPatrolRange: 14
-  yPatrolRange: 14
+  xPatrolRange: 10
+  yPatrolRange: 10
   xOffset: 0
   yOffset: 0
   minTimeBeforeTurn: 2
@@ -334,7 +334,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 6}
+  m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
 --- !u!114 &-7509924996132364942
 MonoBehaviour:

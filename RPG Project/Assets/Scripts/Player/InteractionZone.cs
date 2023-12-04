@@ -14,7 +14,9 @@ public class InteractionZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (selectedObject == null && (collision.CompareTag("Text") || collision.CompareTag("MemorizePuzzle")) || collision.CompareTag("CaveButton") || collision.CompareTag("Bomb") || collision.CompareTag("Consumeable") || collision.CompareTag("Sword") || collision.CompareTag("UpgradedSword") || collision.CompareTag("ArmCannon"))
+        if (selectedObject == null && (collision.CompareTag("Text") || collision.CompareTag("MemorizePuzzle") || collision.CompareTag("CaveButton") ||
+            collision.CompareTag("Bomb") || collision.CompareTag("Consumeable") || collision.CompareTag("Sword") || collision.CompareTag("UpgradedSword") ||
+            collision.CompareTag("ArmCannon") || collision.CompareTag("Key")))
         {
             selectedObject = collision.gameObject;
         }

@@ -369,6 +369,15 @@ public class PlayerManager : MonoBehaviour
 
             Debug.Log("Pick Up Arm Cannon");
         }
+        if(inter.CompareTag("Key")) 
+        {
+            // Not stored in inventory
+            // used in dungeon 3
+
+            Destroy(inter);
+
+            Debug.Log("You picked up a key half");
+        }
     }
 
     #endregion
