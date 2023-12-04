@@ -213,6 +213,9 @@ GameObject:
   - component: {fileID: -6596503128126086972}
   - component: {fileID: 6184660928089151778}
   - component: {fileID: 1214946096861645400}
+  - component: {fileID: -1403847950889452162}
+  - component: {fileID: -4508374053108038645}
+  - component: {fileID: 6897698409129630607}
   m_Layer: 6
   m_Name: IceBlock
   m_TagString: Iceblock
@@ -2793,6 +2796,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1214946096861645400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454430346753448393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6f57bcca6eeda4bad1b850308bd021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1403847950889452162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454430346753448393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6f57bcca6eeda4bad1b850308bd021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4508374053108038645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454430346753448393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6f57bcca6eeda4bad1b850308bd021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6897698409129630607
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

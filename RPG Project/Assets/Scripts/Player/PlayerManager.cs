@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using JetBrains.Annotations;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -285,8 +286,12 @@ public class PlayerManager : MonoBehaviour
 
     public void onInventory(InputAction.CallbackContext value)
     {
-        Vector2 inventory = value.ReadValue<Vector2>();
-        inventoryCommands(inventory);
+        if(value.started)
+        {
+            Vector2 inventory = value.ReadValue<Vector2>();
+            
+            inventoryCommands(inventory);
+        }
     }
 
     public void onPause(InputAction.CallbackContext value)
@@ -347,7 +352,7 @@ public class PlayerManager : MonoBehaviour
         {
             InventorySystem.addItemToInv(inter.tag);
 
-            //Destroy(inter);
+            Destroy(inter);
 
             Debug.Log("Pick Up Sword");
         }
@@ -356,7 +361,7 @@ public class PlayerManager : MonoBehaviour
         {
             InventorySystem.addItemToInv(inter.tag);
 
-            //Destroy(inter);
+            Destroy(inter);
 
             Debug.Log("Pick Up Upgraded Sword");
         }
@@ -365,7 +370,7 @@ public class PlayerManager : MonoBehaviour
         {
             InventorySystem.addItemToInv(inter.tag);
 
-            //Destroy(inter);
+            Destroy(inter);
 
             Debug.Log("Pick Up Arm Cannon");
         }
@@ -412,7 +417,7 @@ public class PlayerManager : MonoBehaviour
         {
             //upgraded sword swing
         }
-        else if(curItem == "Arm Cannon")
+        else if(curItem == "ArmCannon")
         {
             //arm cannon shoot
         }
@@ -424,11 +429,12 @@ public class PlayerManager : MonoBehaviour
 
     private void inventoryCommands(Vector2 inventory)
     {
-
+        Debug.Log("Inventory Commands Called");
         
         if(inventory.y == -1)
         {
             //cycle inv
+            //Debug.Log("Item Cycle Called");
             InventorySystem.itemCycle();
         }
         if(inventory.x == 1)
