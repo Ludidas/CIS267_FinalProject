@@ -21,6 +21,7 @@ public static class InventorySystem
     //itemCycle() - switches to the next item in the inventory
     //displayInventory() - displays all the inventory items in the log (for testing)
     //getCurItem() - returns the current Item
+    //resetInventory() - clears inventory and all weapon slots
     //
     //
     //pls msg me if there is any sort of problem with this script or if you suggest changes.
@@ -159,5 +160,19 @@ public static class InventorySystem
     public static string getCurItem()
     {
         return curItem;
+    }
+
+    public static void resetInventory()
+    {
+        swordSlot = null;
+        upgradedSwordSlot = null;
+        armCannonSlot = null;
+
+        for (int i = 0; i < inventoryMaxSize; i++)
+        {
+            inventory[i] = null;
+        }
+
+        curPos = 0;
     }
 }
