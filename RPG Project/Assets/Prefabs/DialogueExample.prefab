@@ -143,9 +143,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0099e899ab3d3464ca6c4aa63a5cbf95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-    name: Bob
+  conversation:
+  - name: Box
     sentences:
-    - hey
-    - how do u like my test dialogue?
+    - Hello, this is my test dialogue
     - :)
+    - this is crazy
+  - name: Dusty
+    sentences:
+    - What the hell. How does a box talk???

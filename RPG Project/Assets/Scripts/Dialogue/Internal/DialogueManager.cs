@@ -21,6 +21,11 @@ public class DialogueManager : MonoBehaviour{
     private float waitTime;
     private int _iterator;
 
+    // 
+    private Dialogue[] conversation;
+    private int c_i;
+    private int c_length;
+
     [Header("References")]
     // Remember to set these when you create a DialogueManager GameObject in your scene
     [SerializeField] public GameObject triangle;
@@ -53,17 +58,6 @@ public class DialogueManager : MonoBehaviour{
 
     private void Update()
     {
-        //// I'm 40% sure JoystickButton0 is the A button
-        //if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Space) && currentSentence == null)
-        //{
-        //    if (currentlyTalking)
-        //    {
-        //        displayNextSentence();
-        //    }
-        //}
-
-        //Had to destroy most of what's in here, except this part seems necessary so I left it.
-        //You'll find most of the code that was in here moved into onClickThrough(). -Nick
         if (currentSentence != null)
         {
             typeDialogue();
@@ -88,14 +82,16 @@ public class DialogueManager : MonoBehaviour{
         {
             if (value.started && _iterator > 1)
             {
-                Debug.Log("In _iterator > 1");
+                // The iterator check is just a hacky solution for making sure the keypress that advances the dialogue isn't
+                // used also to speed up the dialgoue
+                Debug.Log("Dialogue speed up"); 
                 waitTime = 0f;
             }
             typeDialogue();
         }
     }
 
-
+    // This is still used for my key's right now i'm working on removing this
     public void startDialogue(Dialogue d) {
         currentlyTalking = true;
         dialogueBox.SetActive(true);
@@ -117,19 +113,63 @@ public class DialogueManager : MonoBehaviour{
         displayNextSentence();
     }
 
+   
+    public void startConversation(Dialogue[] c) {
+        // set variables needed for continueConversation
+        conversation = c;
+        c_length = c.Length;
+        c_i = 0;
+
+        currentlyTalking = true;
+        dialogueBox.SetActive(true);
+
+        //This switches the control map to the Dialogue settings, which prevents the player from moving.
+        inputManager.swapMap("Dialogue");
+
+        // clear queue if there is one
+        sentences.Clear();
+
+        // build Queue using the first dialogue 
+        for (int i = 0; i < conversation[0].sentences.Length; i++) {
+            sentences.Enqueue(conversation[0].sentences[i]);
+        }
+
+        // set the name of who we are talking to
+        TMP_Name.text = conversation[0].name;
+        // display first sentence
+        displayNextSentence();
+    }
+
     private void displayNextSentence() {
         // for blinking triangle
         triangleScript.setTyping(true);
 
+        // Displaying the sentence in the dialogue box is done from the update function
         if (sentences.Count > 0) {
             currentSentence = sentences.Dequeue();
-            // Displaying the sentence in the dialogue box is done in the Update function
-        } else {
+
+            // (c_length - 1) because we are iterating after we check to enter
+        } else if (c_i < (c_length - 1)) {
+            c_i++;
+
+            // build queue for next dialogue
+            // set the name 
+            // run displayNextSentence
+            continueConversation();
+        
+        }else {
             endDialogue();
         }
     }
 
     private void endDialogue() {
+        // probably not needed
+        // will remove after i get rid of startDialogue()
+        conversation = null;
+        c_i = 0;
+        c_length = 0;
+
+
         dialogueBox.SetActive(false);
         currentlyTalking = false;
 
@@ -156,6 +196,18 @@ public class DialogueManager : MonoBehaviour{
             triangleScript.setTyping(false);
             resetDialogueVars();
         }
+    }
+
+    private void continueConversation() {
+        sentences.Clear();
+
+        for (int i = 0; i < conversation[c_i].sentences.Length; i++) {
+            sentences.Enqueue(conversation[c_i].sentences[i]);
+        }
+
+        TMP_Name.text = conversation[c_i].name;
+
+        displayNextSentence();
     }
 
     private void resetDialogueVars() {

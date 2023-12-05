@@ -318,7 +318,7 @@ public class PlayerManager : MonoBehaviour
         {
             //Trigger a dialogue box to appear and interact with the user
             //This takes the dialogueManager script, and uses the startDialogue function with the parameter of whatever is stored in the DialogueTrigger of the interacted with object.
-            dialogueManager.GetComponent<DialogueManager>().startDialogue(inter.GetComponent<DialogueTrigger>().triggerDialogue());
+            dialogueManager.GetComponent<DialogueManager>().startConversation(inter.GetComponent<DialogueTrigger>().triggerConversation());
         }
         if (inter.CompareTag("MemorizePuzzle"))
         {
