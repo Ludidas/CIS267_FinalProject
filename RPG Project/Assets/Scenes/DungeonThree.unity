@@ -198,8 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3541ab7b4457a954d8d1a00466a2aa08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xDestination: 86
-  yDestination: 22
+  xDestination: 52
+  yDestination: 0
 --- !u!4 &102447053
 Transform:
   m_ObjectHideFlags: 0
@@ -20657,10 +20657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0099e899ab3d3464ca6c4aa63a5cbf95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-    name: Sign
-    sentences:
-    - DANGER! KEEP OUT!
+  conversation: []
 --- !u!212 &556335438
 SpriteRenderer:
   m_ObjectHideFlags: 0

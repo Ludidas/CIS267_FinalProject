@@ -68,9 +68,8 @@ public class MenuManager : MonoBehaviour {
     }
 
     public void startNewGame() {
-        // Clear inventory and anything else that is static
-
-        // Probably other stuff to do in here
+        InventorySystem.resetInventory();
+        GameManager.newGame();
 
         SceneManager.LoadScene("HubWorld");
     }
