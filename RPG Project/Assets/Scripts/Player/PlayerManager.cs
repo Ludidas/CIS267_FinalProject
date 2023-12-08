@@ -454,7 +454,6 @@ public class PlayerManager : MonoBehaviour
 
     private void inventoryCommands(Vector2 inventory)
     {
-        Debug.Log("Inventory Commands Called");
         
         if(inventory.y == -1)
         {

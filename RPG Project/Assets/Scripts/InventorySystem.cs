@@ -96,7 +96,7 @@ public static class InventorySystem
         //set curItem to the new item in inventory
         curItem = inventory[curPos];
 
-        displayInventory();
+        //displayInventory();
 
         return true;
     }

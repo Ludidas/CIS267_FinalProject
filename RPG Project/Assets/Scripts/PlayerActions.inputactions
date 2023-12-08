@@ -128,7 +128,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "2D Vector (Keyboard)",
+                    "name": "2D Vector [Keyboard]",
                     "id": "6ffa6e8a-d484-459d-8cab-8a21e9f1fda0",
                     "path": "2DVector",
                     "interactions": "",
@@ -406,6 +406,61 @@
                     "name": "right",
                     "id": "c731eb88-5aff-4a2d-8752-4569206ab347",
                     "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "2D Vector [Keyboard]",
+                    "id": "d9b8c620-e82c-4fd9-811b-30ea237da366",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "28979ca5-b35d-486f-9a73-3a02b0b529bd",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "3b13eae3-73ef-49dd-ab81-4c55f8384eda",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "fc912ec5-5fd6-484f-a69c-946ef1d536fa",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "b173e045-b559-4b1f-b0eb-18c84fdbbad1",
+                    "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
