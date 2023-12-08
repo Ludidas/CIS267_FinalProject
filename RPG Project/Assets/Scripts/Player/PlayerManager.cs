@@ -313,6 +313,8 @@ public class PlayerManager : MonoBehaviour
 
     public void checkInteractions(GameObject inter)
     {
+        bool itemAdded;
+
         //This is where any interactions will occur. For example, talking to characters, looking at signs, picking up items, etc.
         if (inter.CompareTag("Text"))
         {
@@ -334,50 +336,60 @@ public class PlayerManager : MonoBehaviour
         if(inter.CompareTag("Bomb"))
         {
             //add bomb to inventory
-            InventorySystem.addItemToInv(inter.tag);
+            itemAdded = InventorySystem.addItemToInv(inter.tag);
 
-            //remove bomb from the floor
-            Destroy(inter);
+            if (itemAdded) {
+                //remove bomb from the floor
+                Destroy(inter);
 
-            Debug.Log("Pick Up Bomb");
+                Debug.Log("Pick Up Bomb");
+            }
         }
         //pick up consumeable
         if(inter.CompareTag("Consumeable"))
         {
             //add consumeable to inventory
-            InventorySystem.addItemToInv(inter.tag);
+            itemAdded = InventorySystem.addItemToInv(inter.tag);
 
-            //remove consumeable from floor
-            Destroy(inter);
+            if (itemAdded) {
+                //remove consumeable from floor
+                Destroy(inter);
 
-            Debug.Log("Pick Up Consumeable");
+                Debug.Log("Pick Up Consumeable");
+            }
         }
         //pick up sword
         if(inter.CompareTag("Sword"))
         {
-            InventorySystem.addItemToInv(inter.tag);
+            itemAdded = InventorySystem.addItemToInv(inter.tag);
 
-            Destroy(inter);
+            if (itemAdded) {
+                Destroy(inter);
 
-            Debug.Log("Pick Up Sword");
+                Debug.Log("Pick Up Sword");
+            }
         }
         //pick up u sword
         if(inter.CompareTag("UpgradedSword"))
         {
-            InventorySystem.addItemToInv(inter.tag);
+            itemAdded = InventorySystem.addItemToInv(inter.tag);
 
-            Destroy(inter);
+            if (itemAdded) {
+                Destroy(inter);
 
-            Debug.Log("Pick Up Upgraded Sword");
+                Debug.Log("Pick Up Upgraded Sword");
+            }
         }
         //pick up ac
         if(inter.CompareTag("ArmCannon"))
         {
-            InventorySystem.addItemToInv(inter.tag);
+            itemAdded = InventorySystem.addItemToInv(inter.tag);
 
-            Destroy(inter);
+            if (itemAdded) {
+                Destroy(inter);
 
-            Debug.Log("Pick Up Arm Cannon");
+                Debug.Log("Pick Up Arm Cannon");
+            }
         }
         if(inter.CompareTag("Key")) 
         {

@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour {
+    [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject inputManagerGO;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject creditsMenu;
@@ -25,7 +26,7 @@ public class MenuManager : MonoBehaviour {
         Time.timeScale = 1.0f;
 
         // Disable Pause Menu
-        pauseMenu.SetActive(false);
+        canvas.SetActive(false);
 
         // Swap Controls
         inputManagerGO.GetComponent<InputManager>().swapMap("PlayerControls");
@@ -36,7 +37,7 @@ public class MenuManager : MonoBehaviour {
         Time.timeScale = 0f;
 
         // Enable Pause menu
-        pauseMenu.SetActive(true);
+        canvas.SetActive(true); 
 
         // Swap Player Controls
         inputManagerGO.GetComponent<InputManager>().swapMap("Menu");

@@ -9239,6 +9239,10 @@ PrefabInstance:
       value: Dungeon 3 LoadZone
       objectReference: {fileID: 0}
     - target: {fileID: 6895364476161064105, guid: 21b33f8f28261204e8fede9dcf2ba976, type: 3}
+      propertyPath: yLoad
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6895364476161064105, guid: 21b33f8f28261204e8fede9dcf2ba976, type: 3}
       propertyPath: zoneName
       value: DungeonThree
       objectReference: {fileID: 0}

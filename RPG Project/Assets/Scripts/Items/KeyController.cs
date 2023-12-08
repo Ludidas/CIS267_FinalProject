@@ -11,9 +11,12 @@ public class KeyController : MonoBehaviour{
     [SerializeField] private GameObject dManagerGO;
     private DialogueManager dManager;
 
-    public Dialogue firstMessage = new Dialogue();
-    public Dialogue secondMessage = new Dialogue();
-    public Dialogue thirdMessage = new Dialogue();
+    private Dialogue firstMessage = new Dialogue();
+
+    private Dialogue[] conversation = new Dialogue[2];
+    private Dialogue secondMessage = new Dialogue();
+    private Dialogue thirdMessage = new Dialogue();
+
 
     private int iterator;
 
@@ -29,6 +32,7 @@ public class KeyController : MonoBehaviour{
         iterator = 0;
 
         firstMessage.name = "Dusty";
+
         secondMessage.name = "Dusty";
         thirdMessage.name = "";
 
@@ -48,6 +52,8 @@ public class KeyController : MonoBehaviour{
             "You get an unsettling feeling that the path forward is no longer blocked"
         };
 
+        conversation[0] = secondMessage; conversation[1] = thirdMessage;
+
         // Set first dialogue
     }
 
@@ -56,8 +62,7 @@ public class KeyController : MonoBehaviour{
         if (key1 == null && key2 == null && iterator == 1) {
             iterator = -999;
 
-            //dManager.startDialogue(secondMessage);
-            dManager.startDialogue(thirdMessage);
+            dManager.startConversation(conversation);
 
             door.SetActive(false);
 

@@ -30,7 +30,7 @@ public static class InventorySystem
 
     //This is the inventory size plus the empty slot for the hand
     //==============================================
-    private static int inventoryMaxSize = 2;
+    private static int inventoryMaxSize = 5;
     //==============================================
 
     private static string[] inventory = new string[inventoryMaxSize];
@@ -42,7 +42,7 @@ public static class InventorySystem
     
 
     //puts item into the player's inventory
-    public static void addItemToInv(string itemName)
+    public static bool addItemToInv(string itemName)
     {
         //if the item is a sword or other weapon, then it gets its own slot
         if(itemName == "Sword")
@@ -51,7 +51,7 @@ public static class InventorySystem
 
             curPos = 10;
 
-            return;
+            return true;
         }
         else if(itemName == "Upgraded Sword")
         {
@@ -59,7 +59,7 @@ public static class InventorySystem
 
             curPos = 11;
 
-            return;
+            return true;
         }
         else if(itemName == "ArmCannon")
         {
@@ -67,24 +67,25 @@ public static class InventorySystem
 
             curPos = 12;
 
-            return;
+            return true;
         }
 
         //set current position in inventory to 0
         curPos = 0;
 
+        // inventory[0] is currently held item ?
         //increment inventory position until there is an empty slot or the curPos is outside of the inventory Boundary
-        do
+        do 
         {
             curPos++;
-        } while(inventory[curPos] != null && curPos <= inventoryMaxSize);
+        } while(inventory[curPos] != null && curPos < inventoryMaxSize-1);
 
         //inventory is full
-        if(curPos == inventoryMaxSize && inventory[curPos] != null)
+        if(curPos == inventoryMaxSize-1 && inventory[curPos] != null)
         {
             Debug.Log("Full Inventory");
 
-            return;
+            return false;
         }
         
         Debug.Log(itemName + " stored in slot " + curPos);
@@ -96,6 +97,8 @@ public static class InventorySystem
         curItem = inventory[curPos];
 
         displayInventory();
+
+        return true;
     }
 
     //sets current item in inventory to empty

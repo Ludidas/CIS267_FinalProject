@@ -29,7 +29,7 @@ public class DialogueManager : MonoBehaviour{
     [Header("References")]
     // Remember to set these when you create a DialogueManager GameObject in your scene
     [SerializeField] public GameObject triangle;
-    [SerializeField] public GameObject dialogueBox;
+    [SerializeField] public GameObject canvas;
     [SerializeField] public TMP_Text TMP_Name;
     [SerializeField] public TMP_Text TMP_Dialogue;
 
@@ -94,7 +94,7 @@ public class DialogueManager : MonoBehaviour{
     // This is still used for my key's right now i'm working on removing this
     public void startDialogue(Dialogue d) {
         currentlyTalking = true;
-        dialogueBox.SetActive(true);
+        canvas.SetActive(true);
 
         //This switches the control map to the Dialogue settings, which prevents the player from moving.
         inputManager.swapMap("Dialogue");
@@ -121,7 +121,7 @@ public class DialogueManager : MonoBehaviour{
         c_i = 0;
 
         currentlyTalking = true;
-        dialogueBox.SetActive(true);
+        canvas.SetActive(true);
 
         //This switches the control map to the Dialogue settings, which prevents the player from moving.
         inputManager.swapMap("Dialogue");
@@ -170,7 +170,7 @@ public class DialogueManager : MonoBehaviour{
         c_length = 0;
 
 
-        dialogueBox.SetActive(false);
+        canvas.SetActive(false);
         currentlyTalking = false;
 
         //This switches the control map to the PlayerControls settings, which allows the player to move again.
