@@ -33,14 +33,16 @@ public class WeaponManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.GetComponent<Enemy>().takeDamage(damage);
-            if(collision.GetComponent<Enemy>().getHealth() <= 0)
+            Debug.Log("Here");
+            collision.gameObject.GetComponent<Enemy>().takeDamage(damage);
+            if(collision.gameObject.GetComponent<Enemy>().getHealth() <= 0)
             {
-                collision.GetComponent <Enemy>().onDeath();
+                collision.gameObject.GetComponent<Enemy>().onDeath();
             }
         }
         
     }
+
 }
