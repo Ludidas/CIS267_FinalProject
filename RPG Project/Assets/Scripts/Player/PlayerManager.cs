@@ -445,6 +445,7 @@ public class PlayerManager : MonoBehaviour
         else if(curItem == "ArmCannon")
         {
             //arm cannon shoot
+            attackCannon();
         }
     }
 
@@ -494,6 +495,11 @@ public class PlayerManager : MonoBehaviour
     private void attackSword()
     {
         weaponsManager.GetComponent<WeaponManager>().attackSword();
+    }
+
+    private void attackCannon()
+    {
+        weaponsManager.GetComponent<WeaponManager>().shootArmCannon();
     }
 
     #endregion
