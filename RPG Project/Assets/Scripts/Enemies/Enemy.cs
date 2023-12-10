@@ -30,7 +30,6 @@ public class Enemy : MonoBehaviour
         LootIndex = Random.Range(0, lootTable.Length);
         LootSpawned = Instantiate(lootTable[LootIndex].gameObject);
         LootSpawned.transform.position = new Vector2(transform.position.x, transform.position.y);
-        Destroy(this.gameObject);
-        
+        Destroy(this.gameObject.GetComponentInParent<SpriteRenderer>().gameObject);
     }
 }
