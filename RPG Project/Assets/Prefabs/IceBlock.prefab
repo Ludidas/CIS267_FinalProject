@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5598038588513692264}
   - component: {fileID: 1781414605843765465}
   m_Layer: 6
-  m_Name: Iceblock
+  m_Name: IceBlock
   m_TagString: Iceblock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +108,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 6640236993703569556}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 04d9d7bb11f55964095c36fae9ff54e0, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
