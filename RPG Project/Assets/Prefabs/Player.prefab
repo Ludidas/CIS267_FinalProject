@@ -262,9 +262,11 @@ MonoBehaviour:
   creditsMenu: {fileID: 0}
   controlsDisplay: {fileID: 63067394112269748}
   eventSystem: {fileID: 7661697724507874781}
+  gameOverDisplay: {fileID: 0}
   btnFirstMenu: {fileID: 5904522794790163527}
   btnControlsMenu: {fileID: 8294207558416299600}
   btnCreditsMenu: {fileID: 0}
+  btnGameOver: {fileID: 0}
 --- !u!1 &1426477351276054734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1294,6 +1296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 9176574146694814668}
   bullet: {fileID: 8725553809234508850, guid: cee32848745dea84a9fc4b961dd4d6a0, type: 3}
+  bulletCooldown: 0.3
 --- !u!95 &9176574146694814668
 Animator:
   serializedVersion: 5

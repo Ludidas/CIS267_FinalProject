@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
-  speed: 0.15
+  speed: 0.1
   lifeSpan: 0.6
 --- !u!95 &-196849770212862990
 Animator:

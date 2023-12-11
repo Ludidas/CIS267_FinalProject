@@ -9,6 +9,19 @@ public class WeaponManager : MonoBehaviour
 {
     [SerializeField] private Animator anim;
     [SerializeField] private GameObject bullet;
+    [SerializeField] private float bulletCooldown;
+
+    private float bulletTimer;
+
+    private void Start()
+    {
+        bulletTimer = 0f;
+    }
+
+    private void Update()
+    {
+        bulletTimer = bulletTimer - Time.deltaTime;
+    }
 
     public void attackSword()
     {
@@ -17,10 +30,15 @@ public class WeaponManager : MonoBehaviour
 
     public void shootArmCannon()
     {
-        anim.SetTrigger("cannonShoot");
-        GameObject bul = Instantiate(bullet);
-        bul.GetComponent<Transform>().position = transform.position;
-        bul.GetComponent<Bullet>().setMovement(transform.rotation);
+        if (bulletTimer < 0)
+        {
+            anim.SetTrigger("cannonShoot");
+            GameObject bul = Instantiate(bullet);
+            bul.GetComponent<Transform>().position = transform.position;
+            bul.GetComponent<Bullet>().setMovement(transform.rotation);
+            bulletTimer = bulletCooldown;
+        }
+
     }
 
     public void attackUpgradedSword()
