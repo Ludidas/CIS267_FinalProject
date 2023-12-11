@@ -37,14 +37,16 @@ public class Bombs : MonoBehaviour
         
         if(this.gameObject.CompareTag("Untagged"))
         {
-            bombAnimator.SetBool("blowingUp", true);
+            
 
             if (timer <= 0)
             {
+                bombAnimator.SetBool("blowingUp", true);
                 gameObject.GetComponent<CircleCollider2D>().enabled = true;
                 
                 if(explosiontimer <= 0)
                 {
+                    
                     isavtive = false;
                     Destroy(this.gameObject);
 
