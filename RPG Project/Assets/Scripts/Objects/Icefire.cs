@@ -19,7 +19,7 @@ public class Icefire : MonoBehaviour
         move = (float).1;
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        block = ib.gameObject.AddComponent<Iceblock>();
+        block = ib.gameObject.GetComponent<Iceblock>();
         inrange = false;
     }
 
@@ -40,7 +40,7 @@ public class Icefire : MonoBehaviour
         }
         if(collision.gameObject.CompareTag("Sword") || collision.gameObject.CompareTag("UpgradedSword"))
         {
-            Instantiate(block, transform.position, transform.rotation);
+            Instantiate(ib, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }
     }

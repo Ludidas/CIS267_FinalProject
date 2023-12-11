@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  ib: {fileID: 454430346753448393, guid: 3d72c4bedfa18864aaef5d866468db89, type: 3}
+  ib: {fileID: 6640236993703569556, guid: 3d72c4bedfa18864aaef5d866468db89, type: 3}
   move: 0
 --- !u!50 &4526639305930250924
 Rigidbody2D:
