@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1334369681691126970}
   - component: {fileID: 6545362005552947527}
   - component: {fileID: 4857430600964852953}
-  - component: {fileID: 9150869803706035496}
   - component: {fileID: -8609578554537685921}
   m_Layer: 0
   m_Name: Spike
@@ -164,20 +163,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
---- !u!114 &9150869803706035496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5179220263588617260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 745b6eaf778f81f44956d658b3b65965, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  lootTable: []
 --- !u!95 &-8609578554537685921
 Animator:
   serializedVersion: 5

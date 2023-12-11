@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class GameManager
 {
@@ -50,6 +51,10 @@ public static class GameManager
         {
             health = maxHealth;
         }
+        if(health <= 0)
+        {
+            onDeath();
+        }
     }
 
     public static float getMaxHealth()
@@ -96,6 +101,15 @@ public static class GameManager
         for (int i = 0; i < dungeonState.Length; i++) {
             dungeonState[i] = false;
         }
+    }
+    public static void onDeath()
+    {
+      
+            health = 10f;
+        spawnLocation = new Vector2(40.225f, -8.665f);
+        SceneManager.LoadScene("HubWorld");
+            
+        
     }
 
 }

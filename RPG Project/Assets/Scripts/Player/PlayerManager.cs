@@ -592,7 +592,7 @@ public class PlayerManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Iceblock"))
         {
             //If the iceblock has stopped, assume the user has too, and let the user move once
-            if (movementType == 1 && collision.gameObject.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
+            if (movementType == 1)
             {
                 movementType = 2;
                 iceMovementHold = Vector2.zero;

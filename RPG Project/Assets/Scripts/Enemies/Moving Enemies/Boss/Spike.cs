@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spike : MonoBehaviour
@@ -30,6 +31,10 @@ public class Spike : MonoBehaviour
             GameManager.changeHealth(-1);
             Destroy(this.gameObject);
             }
+        if(collision.gameObject.CompareTag("Sword"))
+        {
+            Destroy(this.gameObject);
+        }
         
         
     }

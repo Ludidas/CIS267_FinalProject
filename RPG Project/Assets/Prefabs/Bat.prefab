@@ -521,3 +521,5 @@ MonoBehaviour:
   lootTable:
   - {fileID: 6639537388547110766, guid: 933882fb6d103914e844a56072a1a8db, type: 3}
   - {fileID: 7923113822961562748, guid: bced0577f3d76b9489efe00280fc80da, type: 3}
+  - {fileID: 3216657954212113428, guid: 9e55817653608ef47ac57a01cdcb17a1, type: 3}
+  - {fileID: 3216657954212113428, guid: 9e55817653608ef47ac57a01cdcb17a1, type: 3}

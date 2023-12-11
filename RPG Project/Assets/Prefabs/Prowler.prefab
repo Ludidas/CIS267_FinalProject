@@ -46,7 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  lootTable: []
+  lootTable:
+  - {fileID: 6639537388547110766, guid: 933882fb6d103914e844a56072a1a8db, type: 3}
+  - {fileID: 7923113822961562748, guid: bced0577f3d76b9489efe00280fc80da, type: 3}
+  - {fileID: 3216657954212113428, guid: 9e55817653608ef47ac57a01cdcb17a1, type: 3}
+  - {fileID: 3216657954212113428, guid: 9e55817653608ef47ac57a01cdcb17a1, type: 3}
 --- !u!61 &7418362703995102055
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -108,7 +112,7 @@ GameObject:
   - component: {fileID: 5370292973097911089}
   m_Layer: 0
   m_Name: Prowler
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

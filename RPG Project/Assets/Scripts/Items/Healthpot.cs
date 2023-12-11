@@ -36,8 +36,8 @@ public class Healthpot : MonoBehaviour
             if(GameManager.getMaxHealth() >= 10)
             {
                 GameManager.changeHealth(2);
+                Active(false);
             }
-            Debug.Log(GameManager.getHealth());
             Destroy(this.gameObject);
                
         }
