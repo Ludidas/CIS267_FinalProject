@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8494875291329280417}
   - component: {fileID: 4949724401673708638}
   - component: {fileID: 3908743405955518228}
+  - component: {fileID: -196849770212862990}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 88f177fd0b2f21844bed86e66b8fb80c, type: 3}
+  m_Sprite: {fileID: -1379722931, guid: 54e8faef133f17a4eb27b4aaa61a1de3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -164,3 +165,24 @@ MonoBehaviour:
   damage: 2
   speed: 0.15
   lifeSpan: 0.6
+--- !u!95 &-196849770212862990
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8725553809234508850}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 15eaa8041553bae46a36e66646ac0996, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -11,11 +11,14 @@ public class Bombs : MonoBehaviour
     public float timer;
     public float explosiontimer;
     private float cooldown;
+
+    private Animator bombAnimator;
     void Start()
     {
         timer = 3;
         explosiontimer = 1;
         circleCollider = GetComponent<CircleCollider2D>();
+        bombAnimator = GetComponent<Animator>();
         cooldown = 0;
         gameObject.tag = "Bomb";
     }
@@ -34,6 +37,8 @@ public class Bombs : MonoBehaviour
         
         if(this.gameObject.CompareTag("Untagged"))
         {
+            bombAnimator.SetBool("blowingUp", true);
+
             if (timer <= 0)
             {
                 gameObject.GetComponent<CircleCollider2D>().enabled = true;
