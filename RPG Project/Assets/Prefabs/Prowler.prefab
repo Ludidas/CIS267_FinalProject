@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 745b6eaf778f81f44956d658b3b65965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  health: 15
   damage: 1
   lootTable:
   - {fileID: 6639537388547110766, guid: 933882fb6d103914e844a56072a1a8db, type: 3}

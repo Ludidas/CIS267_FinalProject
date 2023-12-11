@@ -8,6 +8,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private GameObject[] lootTable;
 
+    private float damageCooldown = 0f;
+
+    private void Update()
+    {
+        damageCooldown -= Time.deltaTime;
+    }
+
     public void takeDamage(float d)
     {
         health = health - d;
@@ -34,11 +41,15 @@ public class Enemy : MonoBehaviour
         Destroy(this.gameObject.GetComponentInParent<SpriteRenderer>().gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.changeHealth(-damage);
+            if (damageCooldown <= 0f)
+            {
+                GameManager.changeHealth(-damage);
+                damageCooldown = 0.5f;
+            }
         }
     }
 }
