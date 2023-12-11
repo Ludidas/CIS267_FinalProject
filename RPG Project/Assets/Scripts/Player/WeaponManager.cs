@@ -10,6 +10,8 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private GameObject bullet;
     [SerializeField] private float bulletCooldown;
+    [SerializeField] private GameObject sword;
+    [SerializeField] private GameObject upgradedSword;
 
     private float bulletTimer;
 
@@ -26,6 +28,7 @@ public class WeaponManager : MonoBehaviour
     public void attackSword()
     {
         anim.SetTrigger("swordAttack");
+        sword.GetComponent<Weapon>().startAnim();
     }
 
     public void shootArmCannon()
@@ -44,5 +47,6 @@ public class WeaponManager : MonoBehaviour
     public void attackUpgradedSword()
     {
         anim.SetTrigger("upgradedSwordAttack");
+        upgradedSword.GetComponent<Weapon>().startAnim();
     }
 }

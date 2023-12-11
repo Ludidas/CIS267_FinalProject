@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        transform.position = new Vector2(transform.position.x + movement.x * speed, transform.position.y + movement.y * speed);
+        transform.position = new Vector2(transform.position.x + movement.x * speed * Time.deltaTime, transform.position.y + movement.y * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

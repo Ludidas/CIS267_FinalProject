@@ -1297,6 +1297,8 @@ MonoBehaviour:
   anim: {fileID: 9176574146694814668}
   bullet: {fileID: 8725553809234508850, guid: cee32848745dea84a9fc4b961dd4d6a0, type: 3}
   bulletCooldown: 0.3
+  sword: {fileID: 7225276589557256012}
+  upgradedSword: {fileID: 2514386218205488447}
 --- !u!95 &9176574146694814668
 Animator:
   serializedVersion: 5
