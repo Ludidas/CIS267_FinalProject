@@ -70646,10 +70646,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 38424888701402250, guid: 3d72c4bedfa18864aaef5d866468db89, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 454430346753448393, guid: 3d72c4bedfa18864aaef5d866468db89, type: 3}
       propertyPath: m_Name
       value: IceBlock
@@ -70693,10 +70689,6 @@ PrefabInstance:
     - target: {fileID: 1114059042123756162, guid: 3d72c4bedfa18864aaef5d866468db89, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6210834763816753376, guid: 3d72c4bedfa18864aaef5d866468db89, type: 3}
-      propertyPath: m_Material
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
