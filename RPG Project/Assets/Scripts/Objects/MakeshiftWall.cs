@@ -42,7 +42,7 @@ public class MakeshiftWall : MonoBehaviour{
 
             Dialogue d = new Dialogue();
             d.name = "Dusty";
-            d.sentences = new string[] { "This place is gonna collapse!" };
+            d.sentences = new string[] { "Pog!" };
 
             
             dialogueManagerGO.GetComponent<DialogueManager>().startDialogue(d);
