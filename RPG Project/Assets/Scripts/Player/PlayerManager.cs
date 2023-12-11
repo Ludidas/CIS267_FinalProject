@@ -375,6 +375,7 @@ public class PlayerManager : MonoBehaviour
             itemAdded = InventorySystem.addItemToInv(inter.tag);
 
             if (itemAdded) {
+                Artifact.onpickup();
                 Destroy(inter);
 
                 Debug.Log("Pick Up Upgraded Sword");
@@ -386,6 +387,7 @@ public class PlayerManager : MonoBehaviour
             itemAdded = InventorySystem.addItemToInv(inter.tag);
 
             if (itemAdded) {
+                Artifact.onpickup();
                 Destroy(inter);
 
                 Debug.Log("Pick Up Arm Cannon");

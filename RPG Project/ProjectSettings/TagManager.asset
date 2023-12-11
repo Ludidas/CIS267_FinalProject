@@ -21,6 +21,7 @@ TagManager:
   - CaveButton
   - Enemy
   - Key
+  - Artifact
   layers:
   - Default
   - TransparentFX
