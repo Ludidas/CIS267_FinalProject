@@ -61,14 +61,6 @@ public class Prowler : MonoBehaviour
             Player = collision.gameObject.transform;
             inranged = true;
         }
-        if(collision.gameObject.CompareTag("Sword"))
-        {
-            health.takeDamage(1);
-            if(health.getHealth() <= 0)
-            {
-                health.onDeath();
-            }
-        }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {

@@ -38,7 +38,7 @@ public class Icefire : MonoBehaviour
             player = collision.gameObject.transform;
             inrange = true;
         }
-        if(collision.gameObject.CompareTag("Sword"))
+        if(collision.gameObject.CompareTag("Sword") || collision.gameObject.CompareTag("UpgradedSword"))
         {
             Instantiate(block, transform.position, transform.rotation);
             Destroy(this.gameObject);

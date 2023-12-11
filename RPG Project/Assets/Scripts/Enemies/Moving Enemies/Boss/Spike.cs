@@ -31,7 +31,7 @@ public class Spike : MonoBehaviour
             GameManager.changeHealth(-1);
             Destroy(this.gameObject);
             }
-        if(collision.gameObject.CompareTag("Sword"))
+        if (collision.gameObject.CompareTag("Sword") || collision.gameObject.CompareTag("UpgradedSword"))
         {
             Destroy(this.gameObject);
         }

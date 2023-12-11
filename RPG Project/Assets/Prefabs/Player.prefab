@@ -721,9 +721,9 @@ GameObject:
   - component: {fileID: 2700491676406426602}
   - component: {fileID: 2947137323674748293}
   - component: {fileID: 8381841271459987263}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UpgradedSword
-  m_TagString: Untagged
+  m_TagString: UpgradedSword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
