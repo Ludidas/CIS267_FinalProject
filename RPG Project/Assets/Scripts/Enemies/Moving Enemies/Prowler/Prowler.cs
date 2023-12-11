@@ -26,7 +26,6 @@ public class Prowler : MonoBehaviour
         jumpcooldown = 1;
         attackcooldown = 1;
         health = GetComponent<Enemy>();
-        health.setHealth(3);
     }
 
     // Update is called once per frame
