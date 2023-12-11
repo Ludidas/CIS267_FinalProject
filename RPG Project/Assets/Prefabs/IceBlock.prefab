@@ -316,6 +316,7 @@ GameObject:
   - component: {fileID: 492009831099498225}
   - component: {fileID: 1893192908368593827}
   - component: {fileID: -7892171769497265804}
+  - component: {fileID: -6661760176440731284}
   m_Layer: 6
   m_Name: IceBlock
   m_TagString: Iceblock
@@ -4132,6 +4133,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &-7892171769497265804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454430346753448393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6f57bcca6eeda4bad1b850308bd021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6661760176440731284
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
