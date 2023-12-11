@@ -65968,10 +65968,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: IceBlock (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 454430346753448393, guid: 3d72c4bedfa18864aaef5d866468db89, type: 3}
-      propertyPath: m_TagString
-      value: Iceblock
-      objectReference: {fileID: 0}
     - target: {fileID: 1114059042123756162, guid: 3d72c4bedfa18864aaef5d866468db89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.465295
