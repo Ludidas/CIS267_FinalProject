@@ -16,4 +16,8 @@ public class DialogueTrigger : MonoBehaviour{
     public Dialogue[] triggerConversation() {
         return conversation;
     }
+
+    public void setConversation(Dialogue[] thing) {
+        conversation = thing;
+    }
 }

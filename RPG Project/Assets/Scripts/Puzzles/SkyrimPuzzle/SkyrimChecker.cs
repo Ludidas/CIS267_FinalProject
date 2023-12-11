@@ -9,6 +9,7 @@ public class SkyrimChecker : MonoBehaviour {
     [SerializeField] GameObject[] keys;
 
     [SerializeField] GameObject lockedGate;
+    [SerializeField] GameObject finalBoss;
 
     public void checkSolution() {
         bool solutionPassed = true;
@@ -31,12 +32,14 @@ public class SkyrimChecker : MonoBehaviour {
 
     private void openGate() {
         lockedGate.SetActive(false);
+        finalBoss.SetActive(true);
 
         Debug.Log("Gate opened");
     }
 
     private void closeGate() {
         lockedGate.SetActive(true);
+        finalBoss.SetActive(false);
 
         Debug.Log("Gate Closed");
     }
