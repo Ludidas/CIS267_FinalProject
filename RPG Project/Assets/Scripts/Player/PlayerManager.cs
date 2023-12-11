@@ -406,6 +406,12 @@ public class PlayerManager : MonoBehaviour
 
             inter.GetComponent<SkyrimPuzzle>().advanceState();
         }
+        if(inter.CompareTag("Artifact"))
+        {
+            Artifact.onpickup();
+            Destroy(inter);
+
+        }
     }
 
     #endregion

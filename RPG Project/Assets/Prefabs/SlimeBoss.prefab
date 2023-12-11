@@ -422,7 +422,7 @@ MonoBehaviour:
   Spawner2: {fileID: 2595205457379589005}
   Spawner3: {fileID: 8948242280291093962}
   Spikespawner: {fileID: 3916910967171613787}
-  slimeminion: {fileID: 467077843051750467, guid: dd850be9a67f2ad41bd89f0b04f861f4, type: 3}
+  slimeminion: {fileID: 8289475547132312686, guid: a9879bbbd53bafa498599640fcc908d9, type: 3}
   Spikess: {fileID: 5179220263588617260, guid: 755a3e14574cf8c4aa97afb87e9d33b9, type: 3}
 --- !u!1 &9076848137751521483
 GameObject:

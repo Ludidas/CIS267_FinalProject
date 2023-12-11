@@ -45361,7 +45361,7 @@ GameObject:
   - component: {fileID: 1864651266}
   m_Layer: 0
   m_Name: Treasure
-  m_TagString: Key
+  m_TagString: Artifact
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45462,7 +45462,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

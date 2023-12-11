@@ -16,7 +16,7 @@ public class InteractionZone : MonoBehaviour
     {
         if (selectedObject == null && (collision.CompareTag("Text") || collision.CompareTag("MemorizePuzzle") || collision.CompareTag("CaveButton") ||
             collision.CompareTag("Bomb") || collision.CompareTag("Consumeable") || collision.CompareTag("Sword") || collision.CompareTag("UpgradedSword") ||
-            collision.CompareTag("ArmCannon") || collision.CompareTag("Key")))
+            collision.CompareTag("ArmCannon") || collision.CompareTag("Key")) || collision.CompareTag("Artifact")) 
         {
             selectedObject = collision.gameObject;
         }

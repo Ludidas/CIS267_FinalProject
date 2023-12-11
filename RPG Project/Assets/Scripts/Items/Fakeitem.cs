@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fakeitem : MonoBehaviour
 {
     // Start is called before the first frame update
-    private float timer;
+    public float timer;
     void Start()
     {
         timer = (float).5;
@@ -17,6 +17,10 @@ public class Fakeitem : MonoBehaviour
         if(timer <=0)
         {
             Destroy(this.gameObject);
+        }
+        else
+        {
+            timer -= Time.deltaTime;
         }
     }
 }

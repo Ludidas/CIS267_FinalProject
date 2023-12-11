@@ -77,7 +77,7 @@ public class MenuManager : MonoBehaviour {
 
     public void showCredits() {
         pauseMenu.SetActive(false);
-
+       
         eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(btnCreditsMenu);
 
         creditsMenu.SetActive(true);
