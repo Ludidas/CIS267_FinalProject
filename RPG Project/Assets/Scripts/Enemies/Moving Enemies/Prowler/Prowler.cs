@@ -72,33 +72,4 @@ public class Prowler : MonoBehaviour
         }
         
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Bomb"))
-        {
-            health.takeDamage(5);
-            if(health.getHealth() <= 0)
-            {
-                health.onDeath();
-            }
-        }
-    }
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        { 
-            
-            if (attackcooldown <= 0)
-            {
-                GameManager.changeHealth(-1);
-                Debug.Log(GameManager.getHealth());
-                attackcooldown = (float).5;
-            }
-            else
-            {
-                attackcooldown -= Time.deltaTime;
-            }
-        }
-    }
-
 }

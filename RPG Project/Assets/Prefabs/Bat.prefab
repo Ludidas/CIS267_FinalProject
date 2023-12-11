@@ -180,7 +180,6 @@ GameObject:
   - component: {fileID: 7240275202544795317}
   - component: {fileID: 4878805753863512063}
   - component: {fileID: 4457080339338530020}
-  - component: {fileID: 2960908152659689211}
   - component: {fileID: 2516154351236556909}
   m_Layer: 0
   m_Name: Bat
@@ -292,20 +291,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
---- !u!114 &2960908152659689211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2737438069416410414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 745b6eaf778f81f44956d658b3b65965, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 3
-  lootTable: []
 --- !u!212 &2516154351236556909
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -533,6 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
+  damage: 1
   lootTable:
   - {fileID: 6639537388547110766, guid: 933882fb6d103914e844a56072a1a8db, type: 3}
   - {fileID: 7923113822961562748, guid: bced0577f3d76b9489efe00280fc80da, type: 3}

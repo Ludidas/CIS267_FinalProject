@@ -88,25 +88,6 @@ public class SlimeBoss : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        //When the player gets hit, create a cooldown as long as the player is being hit before the player takes more damage
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            if (attackCooldown <= 0)
-            {
-                GameManager.changeHealth(-2);
-                Debug.Log(GameManager.getHealth());
-                attackCooldown = 1;
-            }
-            else
-            {
-                attackCooldown -= Time.deltaTime;
-            }
-        }
-
-    }
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         //Create a live update of the player's position
@@ -128,16 +109,6 @@ public class SlimeBoss : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             inRange = false;
-        }
-
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        //Reset the attackcooldown
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            attackCooldown = 0;
         }
 
     }

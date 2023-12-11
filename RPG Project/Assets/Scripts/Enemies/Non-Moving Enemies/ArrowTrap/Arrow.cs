@@ -23,6 +23,7 @@ public class Arrow : MonoBehaviour{
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
             // deal damage to the player
+            GameManager.changeHealth(-2);
 
             Destroy(this.gameObject);
         }

@@ -18,7 +18,6 @@ public class FullHitbox : MonoBehaviour
     {
         //Cave Under Collision
         pm.caveUnderTriggerEnter(collision);
-        Debug.Log("Entered CaveUnder");
     }
 
     private void OnTriggerExit2D(Collider2D collision)

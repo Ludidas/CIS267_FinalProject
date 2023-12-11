@@ -157,18 +157,5 @@ public class Bat : MonoBehaviour{
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision) {
-        //When the player gets hit, create a cooldown as long as the player is being hit before the player takes more damage
-        if (collision.gameObject.CompareTag("Player")) {
-            if (attackCooldown <= 0) {
-                Debug.Log("BatHit");
-                GameManager.changeHealth(-1);
-                Debug.Log(GameManager.getHealth());
-                attackCooldown = 1;
-            } else {
-                attackCooldown -= Time.deltaTime;
-            }
-        }
-    }
     #endregion
 }
