@@ -12,8 +12,6 @@ public class MasterDialogue : MonoBehaviour {
 
     // get how many dungeons are complete and change the dialogue attached to the NPC accordingly
     private void Start() {
-        GameManager.setDungeonCompletion(true, Dungeon.Cave);
-
         dialogueTrigger = this.GetComponent<DialogueTrigger>();
         int dungeonsComplete = GameManager.getTotalDungeonsCompleted();
 

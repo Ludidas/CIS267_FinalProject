@@ -534,7 +534,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 790fbd1dd90320d48947a8b75480f879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oneDone: []
+  oneDone:
+  - name: Jesus
+    sentences: []
   twoDone: []
   threeDone: []
 --- !u!114 &26373118
@@ -552,7 +554,16 @@ MonoBehaviour:
   conversation:
   - name: Jesus
     sentences:
-    - d
+    - Hello traveler. It isn't often we I see a new face during a plague. Don't worry.
+      you would be able to tell if I was sick.
+    - 'A corruption swept over this land and people began turning into monsters. '
+  - name: Dusty
+    sentences:
+    - Is there a cure?
+  - name: Jesus
+    sentences:
+    - Legend says there is an artifact in the catacombs, but you would have to get
+      the artifacts located in the cave and ice dungeons.
 --- !u!212 &26373119
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -66921,7 +66932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7612687295152479450, guid: 4617164e9653202429b192bda113b25b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807676590796398445, guid: 4617164e9653202429b192bda113b25b, type: 3}
       propertyPath: btnGameOver
