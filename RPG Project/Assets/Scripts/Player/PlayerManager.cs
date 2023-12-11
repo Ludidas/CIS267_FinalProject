@@ -266,8 +266,6 @@ public class PlayerManager : MonoBehaviour
 
             Debug.Log(curItem);
 
-            //Right now I'm only going to work on the combat system. I am going to assume we're holding a sword and work
-            //based on that.
             checkItemType(curItem);
         }
         
@@ -441,9 +439,10 @@ public class PlayerManager : MonoBehaviour
             Instantiate(b, transform.position, transform.rotation);
             InventorySystem.removeItem();
         }
-        else if(curItem == "Upgraded Sword")
+        else if(curItem == "UpgradedSword")
         {
             //upgraded sword swing
+            attackUpgradedSword();
         }
         else if(curItem == "ArmCannon")
         {
@@ -503,6 +502,11 @@ public class PlayerManager : MonoBehaviour
     private void attackCannon()
     {
         weaponsManager.GetComponent<WeaponManager>().shootArmCannon();
+    }
+
+    private void attackUpgradedSword()
+    {
+        weaponsManager.GetComponent<WeaponManager>().attackUpgradedSword();
     }
 
     #endregion

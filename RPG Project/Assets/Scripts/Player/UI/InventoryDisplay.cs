@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.PlayerSettings;
@@ -12,11 +13,17 @@ public class InventoryDisplay : MonoBehaviour{
 
     [SerializeField] private GameObject displayedItem;
 
+    [Header("Text Display")]
+    [SerializeField] private GameObject slotTextGO;
+    private TextMeshProUGUI slotText;
+
     private string localItem;
 
 
-    void Start(){
+    void Start()
+    {
         changeItem();
+        slotText = slotTextGO.GetComponent<TextMeshProUGUI>();
     }
 
     void Update(){
@@ -24,6 +31,8 @@ public class InventoryDisplay : MonoBehaviour{
         if (localItem != InventorySystem.getCurItem()) {
             changeItem();
         }
+
+        changeTextDisplay();
     }
 
 
@@ -40,5 +49,34 @@ public class InventoryDisplay : MonoBehaviour{
         }
 
         displayedItem.GetComponent<Image>().sprite = items[pos];
+
+    }
+
+    public void changeTextDisplay()
+    {
+        localItem = InventorySystem.getCurItem();
+        string item = "";
+
+        if (InventorySystem.curPos == -1)
+        {
+            if (localItem == "Sword")
+            {
+                item = "Sword";
+            }
+            if (localItem == "UpgradedSword")
+            {
+                item = "Upgraded Sword";
+            }
+            if (localItem == "ArmCannon")
+            {
+                item = "Arm Cannon";
+            }
+        }
+        else
+        {
+            item = (InventorySystem.curPos + 1) + "";
+        }
+
+        slotText.SetText("Slot:\n" + item);
     }
 }

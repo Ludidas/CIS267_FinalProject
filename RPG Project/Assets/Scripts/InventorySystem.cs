@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 
@@ -38,7 +39,7 @@ public static class InventorySystem
     private static string upgradedSwordSlot;
     private static string armCannonSlot;
     private static string curItem;
-    private static int curPos = 0;
+    public static int curPos = 0;
     
 
     //puts item into the player's inventory
@@ -49,15 +50,11 @@ public static class InventorySystem
         {
             swordSlot = itemName;
 
-            curPos = 10;
-
             return true;
         }
-        else if(itemName == "Upgraded Sword")
+        else if(itemName == "UpgradedSword")
         {
             upgradedSwordSlot = itemName;
-
-            curPos = 11;
 
             return true;
         }
@@ -65,20 +62,18 @@ public static class InventorySystem
         {
             armCannonSlot = itemName;
 
-            curPos = 12;
-
             return true;
         }
 
         //set current position in inventory to 0
-        curPos = 0;
+        int curPos = 0;
 
         // inventory[0] is currently held item ?
         //increment inventory position until there is an empty slot or the curPos is outside of the inventory Boundary
-        do 
+        while(inventory[curPos] != null && curPos < inventoryMaxSize)
         {
             curPos++;
-        } while(inventory[curPos] != null && curPos < inventoryMaxSize-1);
+        } 
 
         //inventory is full
         if(curPos == inventoryMaxSize-1 && inventory[curPos] != null)
@@ -94,7 +89,7 @@ public static class InventorySystem
         inventory[curPos] = itemName;
 
         //set curItem to the new item in inventory
-        curItem = inventory[curPos];
+        //curItem = inventory[curPos];
 
         //displayInventory();
 
@@ -137,17 +132,29 @@ public static class InventorySystem
 
     public static void equipSword()
     {
-        curItem = swordSlot;
+        if (swordSlot != null)
+        {
+            curItem = swordSlot;
+            curPos = -1;
+        }
     }
 
     public static void equipUpgradedSword()
     {
-        curItem = upgradedSwordSlot;
+        if (upgradedSwordSlot != null)
+        {
+            curItem = upgradedSwordSlot;
+            curPos = -1;
+        }
     }
 
     public static void equipArmCannon()
     {
-        curItem = armCannonSlot;
+        if (armCannonSlot != null)
+        {
+            curItem = armCannonSlot;
+            curPos = -1;
+        }
     }
 
     //for testing purposes only

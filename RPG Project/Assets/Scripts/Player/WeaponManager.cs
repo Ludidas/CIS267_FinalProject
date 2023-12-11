@@ -12,7 +12,6 @@ public class WeaponManager : MonoBehaviour
 
     public void attackSword()
     {
-        Debug.Log("WeaponManager Called");
         anim.SetTrigger("swordAttack");
     }
 
@@ -22,5 +21,10 @@ public class WeaponManager : MonoBehaviour
         GameObject bul = Instantiate(bullet);
         bul.GetComponent<Transform>().position = transform.position;
         bul.GetComponent<Bullet>().setMovement(transform.rotation);
+    }
+
+    public void attackUpgradedSword()
+    {
+        anim.SetTrigger("upgradedSwordAttack");
     }
 }
