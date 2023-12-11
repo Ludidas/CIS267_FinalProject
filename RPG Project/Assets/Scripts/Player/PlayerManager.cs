@@ -436,6 +436,7 @@ public class PlayerManager : MonoBehaviour
         else if(curItem == "Bomb")
         {
             //use bomb
+            
             Bombs.setavtive(true);
             Instantiate(b, transform.position, transform.rotation);
             InventorySystem.removeItem();

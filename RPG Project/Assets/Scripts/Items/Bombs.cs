@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bombs : MonoBehaviour
@@ -31,12 +32,12 @@ public class Bombs : MonoBehaviour
     private void explosion()
     {
         
-        if(isavtive)
+        if(this.gameObject.CompareTag("Untagged"))
         {
             if (timer <= 0)
             {
                 gameObject.GetComponent<CircleCollider2D>().enabled = true;
-                gameObject.tag = "Untagged";
+                
                 if(explosiontimer <= 0)
                 {
                     isavtive = false;
@@ -57,6 +58,28 @@ public class Bombs : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            if (isavtive)
+            {
+                this.gameObject.tag = "Untagged";
+            }
+        }
+        
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (isavtive)
+            {
+                this.gameObject.tag = "Untagged";
+                setavtive(false);
+            }
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
@@ -71,6 +94,7 @@ public class Bombs : MonoBehaviour
             {
                 cooldown -= Time.deltaTime;
             }
+            
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
