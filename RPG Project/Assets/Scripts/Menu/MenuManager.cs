@@ -12,10 +12,13 @@ public class MenuManager : MonoBehaviour {
     [SerializeField] private GameObject controlsDisplay;
     [SerializeField] private GameObject eventSystem;
 
+    [SerializeField] private GameObject gameOverDisplay;
+
     [Header("MenuButtons")]
     [SerializeField] private GameObject btnFirstMenu;
     [SerializeField] private GameObject btnControlsMenu;
     [SerializeField] private GameObject btnCreditsMenu;
+    [SerializeField] private GameObject btnGameOver;
 
     private void Awake() {
         
@@ -92,5 +95,19 @@ public class MenuManager : MonoBehaviour {
 
     public void exitGame() {
         Application.Quit();
+    }
+
+    public void showFinalMenu() {
+        pauseGame();
+
+        canvas.SetActive(true);
+
+        gameOverDisplay.SetActive(true);
+
+        eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(btnGameOver);
+
+        pauseMenu.SetActive(false);
+
+        gameOverDisplay.SetActive(true);
     }
 }
