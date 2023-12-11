@@ -593,7 +593,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: bc92157d6f27d1b469ba45afc74deec4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -614,7 +614,7 @@ Transform:
   m_GameObject: {fileID: 26373115}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.16, y: 3.61, z: 0}
+  m_LocalPosition: {x: -17.89, y: 18.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3445,7 +3445,7 @@ Transform:
   m_GameObject: {fileID: 332499147}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.56, y: 3.17, z: 0}
+  m_LocalPosition: {x: 16.74, y: 11.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -68068,6 +68068,9 @@ MonoBehaviour:
   conversation:
   - name: Alexa
     sentences:
+    - "Nyaa~! (*\u2267\u03C9\u2266) hewwo there, hooman! Howw is yoww "
+  - name: Alexa
+    sentences:
     - funny cat-girl
 --- !u!212 &1488116718
 SpriteRenderer:
@@ -68109,7 +68112,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 9a658ab1af25ac6499079ae263df4535, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -68130,7 +68133,7 @@ Transform:
   m_GameObject: {fileID: 1488116714}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.2522874, y: 3.2301042, z: 0}
+  m_LocalPosition: {x: -2.44, y: 20.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
